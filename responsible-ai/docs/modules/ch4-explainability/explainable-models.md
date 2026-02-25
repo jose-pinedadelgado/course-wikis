@@ -1,15 +1,15 @@
 # Explainable Models
 
-Unlike post-hoc explanation methods, explainable models are **inherently interpretable** — their decision-making process can be understood directly.
+Explainable models are inherently interpretable — their structure allows humans to understand the reasoning behind predictions.
 
 ---
 
 ## Generalized Additive Models (GAM)
 
-<!-- TODO: Content to be added — GAMs model the target as a sum of smooth functions of individual features -->
+<!-- TODO: Content to be expanded — GAMs model the target as a sum of smooth functions of individual features -->
 
 ---
 
 ## Counterfactual Explanation
 
-<!-- TODO: Content to be added — Counterfactual explanations answer "what would need to change for the prediction to be different?" -->
+<!-- TODO: Content to be expanded — Counterfactual explanations answer "what would need to change for a different outcome?" -->

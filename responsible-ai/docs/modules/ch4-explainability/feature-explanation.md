@@ -6,7 +6,7 @@ Feature explanation techniques help us understand how individual features impact
 
 ## Information Value Plots
 
-**Information Value (IV)** measures the predictive power of a feature on a categorical target. It relies on **Weight of Evidence (WOE)**, which explores the proportion of positive and negative outcomes within each class or bin of a feature.
+Information Value (IV) measures the predictive power of a feature on a categorical target. It relies on **Weight of Evidence (WOE)**, which explores the proportion of positive and negative outcomes within each bin or class of a feature.
 
 ### Weight of Evidence (WOE)
 
@@ -14,28 +14,28 @@ $$
 WOE = \ln\left(\frac{\text{Proportion of Positives}}{\text{Proportion of Negatives}}\right)
 $$
 
-The natural logarithm provides:
-
-- **Symmetry** around zero (WOE = 0 means equal odds)
-- **Scaling** that linearizes the relationship for logistic regression
-- **Variance stabilization** across bins
-- **Handling of extreme values** by reducing their impact
-
 ### Information Value (IV)
 
 $$
 IV = \sum (\text{Proportion of Positives} - \text{Proportion of Negatives}) \times WOE
 $$
 
-### How to Read IV Values
+### How to Interpret IV
 
 | IV Range | Predictive Power |
 |----------|-----------------|
-| < 0.02 | Weak |
+| < 0.02 | Very weak |
 | 0.02 – 0.1 | Weak |
 | 0.1 – 0.3 | Medium |
 | 0.3 – 0.5 | Strong |
 | > 0.5 | Suspiciously strong |
+
+### Why Use Natural Logarithm?
+
+1. **Symmetry** — WOE of 0 means equal odds; positive = event more likely; negative = less likely
+2. **Stabilizing variance** — Bins with extreme odds ratios don't disproportionately affect the model
+3. **Handling extremes** — Reduces impact of outliers
+4. **Intuitive interpretation** — Magnitude indicates strength of evidence
 
 ### Python Code
 
@@ -74,7 +74,7 @@ PDPs show the relationship between a feature and the predicted outcome by averag
 
 1. **Select a feature** of interest
 2. **Create a grid** of values for that feature
-3. **Make predictions** for each grid value (other features held constant)
+3. **Make predictions** at each grid point (other features held fixed)
 4. **Average predictions** across all instances
 
 ### Python Code
@@ -84,12 +84,10 @@ from sklearn.inspection import PartialDependenceDisplay
 from sklearn.inspection import partial_dependence
 
 # Get individual prediction lines
-pdp_lines = partial_dependence(
-    rf, X, ["car_age"],
-    percentiles=(0, 1),
-    grid_resolution=100,
-    kind='individual'
-)
+pdp_lines = partial_dependence(rf, X, ["car_age"], 
+                               percentiles=(0,1), 
+                               grid_resolution=100,
+                               kind='individual')
 ```
 
 ### Single Instance PDP
@@ -97,42 +95,42 @@ pdp_lines = partial_dependence(
 ```python
 import matplotlib.pyplot as plt
 
-plt.figure(figsize=(8, 4))
-plt.plot(pdp_lines['values'][0], pdp_lines['individual'][0][0],
+plt.figure(figsize=(8,4))
+plt.plot(pdp_lines['values'][0], pdp_lines['individual'][0][0], 
          linewidth=2, color='black')
 plt.plot(car_0['car_age'], y_pred[0], 'ro', markersize=5, label='Actual car_age')
 plt.ylabel('Predicted price', size=12)
 plt.xlabel('car_age', size=12)
 plt.legend(loc='upper right')
+plt.show()
 ```
-
-<!-- TODO: Add PDP single instance image -->
 
 ### ICE Plot (Individual Conditional Expectation)
 
-ICE plots display one line per instance, showing how each instance's prediction changes when a feature changes:
+An ICE plot displays one line per instance, showing how each instance's prediction changes when a feature changes:
 
 ```python
-fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8, 4))
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(8,4))
 PartialDependenceDisplay.from_estimator(
-    rf, X, ['car_age'],
+    rf, X, ['car_age'], 
     kind='both',
     ice_lines_kw={"color": "black"},
     ax=ax,
     pd_line_kw={"color": "red", "lw": 3, 'linestyle': '--'}
 )
+plt.show()
 ```
 
-<!-- TODO: Add ICE plot image -->
+<!-- TODO: Add PDP and ICE plot images -->
 
 ---
 
 ## Accumulated Local Effects (ALE)
 
-<!-- TODO: Content to be added — ALE provides an alternative to PDP that accounts for feature correlations -->
+<!-- TODO: Content to be expanded — ALE plots address limitations of PDPs when features are correlated -->
 
 ---
 
 ## Sensitivity Analysis
 
-<!-- TODO: Content to be added — Sensitivity analysis examines how changes in input features affect model output -->
+<!-- TODO: Content to be expanded — Sensitivity analysis measures how changes in input features affect model output -->
