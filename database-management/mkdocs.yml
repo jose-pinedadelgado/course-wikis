@@ -1,0 +1,64 @@
+site_name: "IS380 — Database Management"
+site_description: "Course wiki for IS380 at CSULB"
+site_author: "Jose Pineda"
+site_url: ""
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - ERD Guide:
+    - "1. Cardinality": modules/erd-guide-cardinalities.md
+    - "2. Degrees of Relationship": modules/erd-guide-degrees.md
+    - "3. Special Entity Types": modules/erd-guide-entity-types.md
+    - "4. Managing Attributes": modules/erd-guide-attributes.md
+    - "5. Enhanced ERD (EERD)": modules/erd-guide-eerd.md
+    - "6. Relational Model": modules/erd-guide-relational-model.md
+    - "IS380 ERD Examples": modules/is380-erd-example.md
+  - Contributing: contributing.md
