@@ -1,35 +1,126 @@
-# Features Overview
+# Features
 
 Bamboo Money ships with **8 core features** plus foundational capabilities for transaction management, budgeting, savings, and net worth tracking.
 
-## Feature Summary
+---
 
-| # | Feature | Status | Description |
-|---|---------|--------|-------------|
-| 1 | [CSV Export](csv-import-export.md#csv-export) | ✅ Complete | Download filtered transactions as CSV |
-| 2 | [CSV Import](csv-import-export.md#csv-import) | ✅ Complete | Upload bank CSVs with auto-detection |
-| 3 | [Dark Mode](dark-mode.md) | ✅ Complete | Light/dark theme toggle with persistence |
-| 4 | [Auto-Categorization Rules](categorization-rules.md) | ✅ Complete | Keyword-based automatic categorization |
-| 5 | [Spending Alerts](spending-alerts.md) | ✅ Complete | Budget warnings and unusual spending detection |
-| 6 | [Recurring Detection](recurring-detection.md) | ✅ Complete | Auto-detect subscriptions and bills |
-| 7 | [Budget Rollover](budget-rollover.md) | ✅ Complete | Carry unused budget to next month |
-| 8 | [Cash Flow Forecast](cash-flow-forecast.md) | ✅ Complete | Spending pace projections and upcoming bills |
+## Core Features
 
-## Core Capabilities
+<div class="grid cards" markdown>
 
-These foundational features support the 8 core features above:
+-   :material-download:{ .lg .middle } **CSV Export**
 
-| Capability | Description |
-|---|---|
-| [Dashboard](dashboard.md) | Financial command center with charts, alerts, and projections |
-| [Transactions](transactions.md) | Full CRUD with search, filter, pagination, and inline editing |
-| [Budget Management](budgets.md) | Per-category spending limits with progress tracking |
-| [Savings Goals](savings-goals.md) | Target-based saving with contributions and deadlines |
-| [Net Worth Tracking](net-worth.md) | Manual asset/liability tracking with historical charts |
+    ---
+
+    Download filtered transactions as a CSV file. Respects all active filters.
+
+    [:octicons-arrow-right-24: CSV Import & Export](csv-import-export.md)
+
+-   :material-upload:{ .lg .middle } **CSV Import**
+
+    ---
+
+    Upload bank CSVs with auto-detection for Chase, Amex, Wells Fargo, and Bank of America.
+
+    [:octicons-arrow-right-24: CSV Import & Export](csv-import-export.md)
+
+-   :material-weather-night:{ .lg .middle } **Dark Mode**
+
+    ---
+
+    Light/dark theme toggle with localStorage persistence and Chart.js adaptation.
+
+    [:octicons-arrow-right-24: Dark Mode](dark-mode.md)
+
+-   :material-tag-multiple:{ .lg .middle } **Auto-Categorization Rules**
+
+    ---
+
+    Keyword-based rules with contains/starts-with/exact match and priority ordering.
+
+    [:octicons-arrow-right-24: Categorization Rules](categorization-rules.md)
+
+-   :material-bell-alert:{ .lg .middle } **Spending Alerts**
+
+    ---
+
+    Budget warnings at 80%, 100%, and unusual spending detection (>1.5× average).
+
+    [:octicons-arrow-right-24: Spending Alerts](spending-alerts.md)
+
+-   :material-repeat:{ .lg .middle } **Recurring Detection**
+
+    ---
+
+    Auto-detect subscriptions and recurring bills from transaction history patterns.
+
+    [:octicons-arrow-right-24: Recurring Detection](recurring-detection.md)
+
+-   :material-arrow-right-bold:{ .lg .middle } **Budget Rollover**
+
+    ---
+
+    Carry unused budget forward with optional caps. Per-category opt-in.
+
+    [:octicons-arrow-right-24: Budget Rollover](budget-rollover.md)
+
+-   :material-chart-line:{ .lg .middle } **Cash Flow Forecast**
+
+    ---
+
+    Spending pace projections with actual vs. budget line chart and upcoming bills.
+
+    [:octicons-arrow-right-24: Cash Flow Forecast](cash-flow-forecast.md)
+
+</div>
+
+## Foundational Capabilities
+
+<div class="grid cards" markdown>
+
+-   :material-view-dashboard:{ .lg .middle } **Dashboard**
+
+    ---
+
+    Financial command center with charts, alerts, pace tracking, and projections.
+
+    [:octicons-arrow-right-24: Dashboard](dashboard.md)
+
+-   :material-swap-horizontal:{ .lg .middle } **Transactions**
+
+    ---
+
+    Full CRUD with search, filter, pagination, and HTMX inline editing.
+
+    [:octicons-arrow-right-24: Transactions](transactions.md)
+
+-   :material-chart-pie:{ .lg .middle } **Budget Management**
+
+    ---
+
+    Per-category spending limits with progress bars and color coding.
+
+    [:octicons-arrow-right-24: Budgets](budgets.md)
+
+-   :material-target:{ .lg .middle } **Savings Goals**
+
+    ---
+
+    Target-based saving with contributions, deadlines, and monthly projections.
+
+    [:octicons-arrow-right-24: Savings Goals](savings-goals.md)
+
+-   :material-scale-balance:{ .lg .middle } **Net Worth Tracking**
+
+    ---
+
+    Manual asset/liability tracking with historical net worth chart.
+
+    [:octicons-arrow-right-24: Net Worth](net-worth.md)
+
+</div>
 
 ## Design Philosophy
-
-Bamboo Money follows three principles informed by competitive analysis of Monarch Money and Copilot Money:
 
 !!! abstract "Privacy First"
     No bank account linking required. All data stays on your machine. Import via CSV upload or manual entry.

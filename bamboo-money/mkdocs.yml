@@ -21,15 +21,16 @@ theme:
   icon:
     logo: material/leaf
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
     - navigation.indexes
+    - navigation.path
     - search.suggest
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - content.tooltips
 
 plugins:
   - search
