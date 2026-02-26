@@ -1,0 +1,63 @@
+site_name: "Pineapple — AI Course Assistant"
+site_description: "Multi-agent AI system for course research and reporting"
+site_author: "Jose Pineda"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: orange
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: orange
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    logo: material/fruit-pineapple
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Architecture:
+    - System Overview: architecture/overview.md
+    - Agents & Tasks: architecture/agents.md
+    - Tech Stack: architecture/tech-stack.md
+  - Guides:
+    - Getting Started: guides/quickstart.md
+    - Configuration: guides/configuration.md
+  - Reference:
+    - CLI Commands: reference/cli.md
+    - Integrations: reference/integrations.md
+  - Roadmap: roadmap.md

@@ -1,0 +1,17 @@
+[project]
+name = "chalq-wiki"
+version = "0.1.0"
+description = "Product wiki for Chalq — course material to wiki converter"
+requires-python = ">=3.12"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["docs"]
+
+[tool.uv]
+dev-dependencies = [
+    "mkdocs-material>=9.6",
+]
