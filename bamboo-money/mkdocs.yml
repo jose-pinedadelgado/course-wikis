@@ -77,6 +77,8 @@ nav:
     - Savings Goals: features/savings-goals.md
     - Net Worth Tracking: features/net-worth.md
     - Dark Mode: features/dark-mode.md
+    - AI Chatbot: features/chatbot.md
+    - Cash Flow Sankey: features/cashflow-sankey.md
   - Architecture:
     - System Overview: architecture/overview.md
     - Data Model: architecture/data-model.md

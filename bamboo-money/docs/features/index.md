@@ -74,6 +74,28 @@ Bamboo Money ships with **8 core features** plus foundational capabilities for t
 
 </div>
 
+## AI & Analytics
+
+<div class="grid cards" markdown>
+
+-   :material-robot:{ .lg .middle } **AI Chatbot (Bamboo Assistant)**
+
+    ---
+
+    GPT-4o-mini powered assistant with inline visualizations, suggested questions, and conversation memory.
+
+    [:octicons-arrow-right-24: Chatbot](chatbot.md)
+
+-   :material-chart-sankey:{ .lg .middle } **Cash Flow Sankey Diagram**
+
+    ---
+
+    Interactive D3.js Sankey showing income → spending → savings flow with month navigation.
+
+    [:octicons-arrow-right-24: Cash Flow Sankey](cashflow-sankey.md)
+
+</div>
+
 ## Foundational Capabilities
 
 <div class="grid cards" markdown>
