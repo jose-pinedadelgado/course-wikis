@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bamboo Assistant — Thinking Animations</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f1a; color: #e0e0e0; min-height: 100vh; padding: 2rem; }
+  h1 { text-align: center; margin-bottom: 0.5rem; font-size: 1.8rem; color: #66BB6A; }
+  .subtitle { text-align: center; color: #888; margin-bottom: 2.5rem; font-size: 0.95rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto; }
+  .card { background: #1a1a2e; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .card-header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 1rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .card-header h2 { font-size: 1rem; color: #66BB6A; margin-bottom: 0.25rem; }
+  .card-header .badge { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: rgba(102,187,106,0.15); color: #66BB6A; margin-left: 0.5rem; }
+  .card-header p { font-size: 0.78rem; color: #888; margin-top: 4px; }
+  .card-body { padding: 1.5rem; min-height: 140px; display: flex; align-items: center; justify-content: center; }
+  .chat-bubble { background: #2d2d44; padding: 0.8rem 1.2rem; border-radius: 14px 14px 14px 4px; display: inline-flex; align-items: center; gap: 6px; }
+
+  /* ═══ Option 1: Bamboo Growing ═══ */
+  .bamboo-grow { display: flex; align-items: flex-end; gap: 3px; height: 36px; padding: 4px 8px; }
+  .bamboo-segment {
+    width: 6px;
+    background: linear-gradient(to top, #2E7D32, #66BB6A);
+    border-radius: 3px 3px 1px 1px;
+    animation: bambooGrow 1.8s ease-in-out infinite;
+  }
+  .bamboo-segment:nth-child(1) { animation-delay: 0s; }
+  .bamboo-segment:nth-child(2) { animation-delay: 0.3s; }
+  .bamboo-segment:nth-child(3) { animation-delay: 0.6s; }
+  .bamboo-segment::after {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 2px;
+    background: #4CAF50;
+    border-radius: 1px;
+    margin-left: -3px;
+    margin-top: -2px;
+    opacity: 0;
+    animation: leafAppear 1.8s ease-in-out infinite;
+  }
+  .bamboo-segment:nth-child(1)::after { animation-delay: 0.4s; }
+  .bamboo-segment:nth-child(2)::after { animation-delay: 0.7s; }
+  .bamboo-segment:nth-child(3)::after { animation-delay: 1.0s; }
+  @keyframes bambooGrow {
+    0% { height: 4px; opacity: 0.4; }
+    40% { height: 28px; opacity: 1; }
+    70% { height: 28px; opacity: 1; }
+    100% { height: 4px; opacity: 0.4; }
+  }
+  @keyframes leafAppear {
+    0%, 20% { opacity: 0; transform: scaleX(0); }
+    40% { opacity: 1; transform: scaleX(1); }
+    70% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0); }
+  }
+  .bamboo-text {
+    font-size: 0.78rem;
+    color: #66BB6A;
+    margin-left: 6px;
+    opacity: 0;
+    animation: textFadeIn 1.8s ease-in-out infinite;
+  }
+  @keyframes textFadeIn {
+    0%, 30% { opacity: 0; }
+    50% { opacity: 0.7; }
+    80% { opacity: 0.7; }
+    100% { opacity: 0; }
+  }
+
+  /* ═══ Option 2: Typing Dots ═══ */
+  .typing-dots { display: flex; gap: 5px; align-items: center; padding: 4px 2px; }
+  .typing-dot {
+    width: 8px; height: 8px;
+    background: #66BB6A;
+    border-radius: 50%;
+    animation: dotBounce 1.4s ease-in-out infinite;
+  }
+  .typing-dot:nth-child(1) { animation-delay: 0s; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-8px); opacity: 1; }
+  }
+
+  /* ═══ Option 3: Bamboo Leaf Dots ═══ */
+  .bamboo-dots { display: flex; gap: 5px; align-items: center; padding: 4px 2px; }
+  .bamboo-dot {
+    width: 10px; height: 10px;
+    background: linear-gradient(135deg, #2E7D32, #66BB6A);
+    border-radius: 50% 50% 50% 10%;
+    animation: leafBounce 1.5s ease-in-out infinite;
+  }
+  .bamboo-dot:nth-child(1) { animation-delay: 0s; }
+  .bamboo-dot:nth-child(2) { animation-delay: 0.2s; }
+  .bamboo-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes leafBounce {
+    0%, 60%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+    30% { transform: translateY(-8px) rotate(-15deg); opacity: 1; }
+  }
+  .bamboo-dots-label {
+    font-size: 0.75rem;
+    color: #4CAF50;
+    margin-left: 6px;
+    animation: labelPulse 2s ease-in-out infinite;
+  }
+  @keyframes labelPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ═══ Option 4: Sprouting Seed ═══ */
+  .sprout-container { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 40px; height: 44px; position: relative; }
+  .sprout-seed {
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+    animation: seedPulse 3.5s ease-in-out infinite;
+  }
+  @keyframes seedPulse {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.1); }
+    30% { transform: scale(0.8); opacity: 0.6; }
+    50%, 80% { transform: scale(0.6); opacity: 0.3; }
+  }
+  .sprout-stem {
+    position: absolute;
+    bottom: 14px;
+    width: 3px;
+    background: linear-gradient(to top, #2E7D32, #66BB6A);
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: stemGrow 3.5s ease-in-out infinite;
+  }
+  @keyframes stemGrow {
+    0%, 20% { height: 0; opacity: 0; }
+    50% { height: 18px; opacity: 1; }
+    80% { height: 18px; opacity: 1; }
+    100% { height: 0; opacity: 0; }
+  }
+  .sprout-leaf-l, .sprout-leaf-r {
+    position: absolute;
+    bottom: 28px;
+    width: 10px; height: 6px;
+    background: #4CAF50;
+    border-radius: 50%;
+    animation: sproutLeaf 3.5s ease-in-out infinite;
+  }
+  .sprout-leaf-l {
+    right: 20px;
+    transform-origin: right center;
+    transform: rotate(-30deg) scaleX(0);
+    animation-name: sproutLeafL;
+  }
+  .sprout-leaf-r {
+    left: 20px;
+    transform-origin: left center;
+    transform: rotate(30deg) scaleX(0);
+    animation-name: sproutLeafR;
+  }
+  @keyframes sproutLeafL {
+    0%, 40% { transform: rotate(-30deg) scaleX(0); opacity: 0; }
+    55% { transform: rotate(-30deg) scaleX(1); opacity: 1; }
+    80% { transform: rotate(-30deg) scaleX(1); opacity: 1; }
+    100% { transform: rotate(-30deg) scaleX(0); opacity: 0; }
+  }
+  @keyframes sproutLeafR {
+    0%, 45% { transform: rotate(30deg) scaleX(0); opacity: 0; }
+    60% { transform: rotate(30deg) scaleX(1); opacity: 1; }
+    80% { transform: rotate(30deg) scaleX(1); opacity: 1; }
+    100% { transform: rotate(30deg) scaleX(0); opacity: 0; }
+  }
+  .sprout-label {
+    font-size: 0.72rem;
+    color: #4CAF50;
+    margin-top: 4px;
+    animation: labelPulse 2s ease-in-out infinite;
+  }
+
+  /* Light mode versions */
+  .light { background: #fff; }
+  .light .chat-bubble { background: #f0f0f0; }
+
+  .vote-bar { max-width: 900px; margin: 2.5rem auto 0; text-align: center; }
+  .vote-bar p { color: #888; font-size: 0.85rem; }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    body { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+  <h1>🎋 Thinking Animation Options</h1>
+  <p class="subtitle">Pick the one that feels right for Bamboo Money</p>
+
+  <div class="grid">
+    <!-- Option 1 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Option 1: Bamboo Growing <span class="badge">On-brand</span></h2>
+        <p>Three bamboo segments grow upward with leaves appearing. Unique and memorable.</p>
+      </div>
+      <div class="card-body">
+        <div class="chat-bubble">
+          <div class="bamboo-grow">
+            <div class="bamboo-segment"></div>
+            <div class="bamboo-segment"></div>
+            <div class="bamboo-segment"></div>
+          </div>
+          <span class="bamboo-text">Growing your answer...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Option 2: Typing Dots <span class="badge">Industry standard</span></h2>
+        <p>Classic iMessage/WhatsApp bouncing dots. Universally recognized.</p>
+      </div>
+      <div class="card-body">
+        <div class="chat-bubble">
+          <div class="typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 3 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Option 3: Bamboo Leaf Dots <span class="badge">Recommended</span></h2>
+        <p>Leaf-shaped dots that bounce and rotate. Recognizable + branded.</p>
+      </div>
+      <div class="card-body">
+        <div class="chat-bubble">
+          <div class="bamboo-dots">
+            <div class="bamboo-dot"></div>
+            <div class="bamboo-dot"></div>
+            <div class="bamboo-dot"></div>
+          </div>
+          <span class="bamboo-dots-label">Bamboo is thinking...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Option 4 -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Option 4: Sprouting Seed <span class="badge">Storytelling</span></h2>
+        <p>A seed sprouts into bamboo. "Your answer is growing." Delightful but slower.</p>
+      </div>
+      <div class="card-body">
+        <div class="chat-bubble" style="flex-direction:column;align-items:center;padding:1rem 1.5rem;">
+          <div class="sprout-container">
+            <div class="sprout-leaf-l"></div>
+            <div class="sprout-leaf-r"></div>
+            <div class="sprout-stem"></div>
+            <div class="sprout-seed">🌱</div>
+          </div>
+          <span class="sprout-label">Growing your answer...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vote-bar">
+    <p>💡 All animations are pure CSS — no JavaScript, no libraries. They'll work on any device.</p>
+  </div>
+</body>
+</html>
