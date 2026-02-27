@@ -132,11 +132,11 @@ Bamboo Money ships with **8 core features** plus foundational capabilities for t
 
     [:octicons-arrow-right-24: Savings Goals](savings-goals.md)
 
--   :material-scale-balance:{ .lg .middle } **Net Worth Tracking**
+-   :material-scale-balance:{ .lg .middle } **Net Worth Tracker**
 
     ---
 
-    Manual asset/liability tracking with historical net worth chart.
+    Full financial dashboard with 8 key metrics (FI ratio, liquid NW, debt payoff), trend charts, allocation donut, stacked area, account groups, and formatted Excel export.
 
     [:octicons-arrow-right-24: Net Worth](net-worth.md)
 
