@@ -1,0 +1,84 @@
+site_name: "PD Arena — Prisoner's Dilemma Research Platform"
+site_description: "A Django-based platform for running Iterated Prisoner's Dilemma experiments with LLM agents"
+site_author: "Jose Pineda"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep orange
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep orange
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    logo: material/sword-cross
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Research:
+    - Hypothesis & Motivation: research/hypothesis.md
+    - Literature Review: research/literature.md
+    - Experimental Phases: research/phases.md
+    - Phase Checklist: research/checklist.md
+  - Architecture:
+    - System Overview: architecture/overview.md
+    - Agent Design: architecture/agents.md
+    - Game Engine: architecture/engine.md
+    - LLM Integration: architecture/llm.md
+    - Metrics: architecture/metrics.md
+  - Guides:
+    - Getting Started: guides/quickstart.md
+    - Creating Agents: guides/creating-agents.md
+    - Running Experiments: guides/experiments.md
+    - Interpreting Results: guides/results.md
+  - Reference:
+    - Models: reference/models.md
+    - CrewAI YAML Format: reference/yaml.md
+    - Payoff Matrix: reference/payoff.md
+    - Comparison to pd_phase2: reference/comparison.md

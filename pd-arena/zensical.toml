@@ -1,0 +1,53 @@
+[project]
+site_name = "PD Arena — Prisoner's Dilemma Research Platform"
+site_description = "A Django-based platform for running Iterated Prisoner's Dilemma experiments with LLM agents"
+site_author = "Jose Pineda"
+site_url = ""
+
+[project.theme]
+variant = "modern"
+
+[project.theme.palette]
+primary = "deep orange"
+accent = "teal"
+
+[project.theme.features]
+navigation = ["tabs", "sections", "expand", "top"]
+search = ["suggest", "highlight"]
+content = ["code.copy", "tabs.link"]
+
+[[project.nav]]
+Home = "index.md"
+
+[[project.nav]]
+"Research" = [
+    { "Hypothesis & Motivation" = "research/hypothesis.md" },
+    { "Literature Review" = "research/literature.md" },
+    { "Experimental Phases" = "research/phases.md" },
+    { "Phase Checklist" = "research/checklist.md" },
+]
+
+[[project.nav]]
+"Architecture" = [
+    { "System Overview" = "architecture/overview.md" },
+    { "Agent Design" = "architecture/agents.md" },
+    { "Game Engine" = "architecture/engine.md" },
+    { "LLM Integration" = "architecture/llm.md" },
+    { "Metrics" = "architecture/metrics.md" },
+]
+
+[[project.nav]]
+"Guides" = [
+    { "Getting Started" = "guides/quickstart.md" },
+    { "Creating Agents" = "guides/creating-agents.md" },
+    { "Running Experiments" = "guides/experiments.md" },
+    { "Interpreting Results" = "guides/results.md" },
+]
+
+[[project.nav]]
+"Reference" = [
+    { "Models" = "reference/models.md" },
+    { "CrewAI YAML Format" = "reference/yaml.md" },
+    { "Payoff Matrix" = "reference/payoff.md" },
+    { "Comparison to pd_phase2" = "reference/comparison.md" },
+]
