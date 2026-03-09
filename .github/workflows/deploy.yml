@@ -75,6 +75,11 @@ jobs:
                   <h2>PD Arena</h2>
                   <p>Prisoner's Dilemma research — agent cooperation under game theory</p>
                 </a>
+                <a class="card" href="./responsible-ai-zensical/">
+                  <span class="badge">Course</span>
+                  <h2>Responsible AI</h2>
+                  <p>IS 671 — Fairness, explainability, accountability &amp; privacy in AI</p>
+                </a>
                 <a class="card" href="./pacodogshop/">
                   <span class="badge project">Project</span>
                   <h2>Pacodogshop</h2>
@@ -106,6 +111,13 @@ jobs:
           uv sync
           uv run zensical build
           mv site ../site/pd-arena
+
+      - name: Build responsible-ai-zensical
+        run: |
+          cd responsible-ai-zensical
+          uv sync
+          uv run zensical build
+          mv site ../site/responsible-ai-zensical
 
       - name: Build pacodogshop
         run: |
