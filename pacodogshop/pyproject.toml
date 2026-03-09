@@ -13,5 +13,5 @@ packages = ["docs"]
 
 [tool.uv]
 dev-dependencies = [
-    "mkdocs-material>=9.6",
+    "zensical",
 ]

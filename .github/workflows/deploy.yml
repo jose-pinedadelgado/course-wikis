@@ -96,7 +96,8 @@ jobs:
         run: |
           cd database-management
           uv sync
-          uv run mkdocs build -d ../site/database-management
+          uv run zensical build
+          mv site ../site/database-management
 
       - name: Build advanced-database-management-zensical
         run: |
@@ -123,7 +124,8 @@ jobs:
         run: |
           cd pacodogshop
           uv sync --dev
-          uv run mkdocs build -d ../site/pacodogshop
+          uv run zensical build
+          mv site ../site/pacodogshop
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

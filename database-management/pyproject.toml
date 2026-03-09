@@ -3,6 +3,6 @@ name = "6-chalq"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
-    "mkdocs-material>=9.7.2",
+    "zensical",
     "python-docx>=1.2.0",
 ]
