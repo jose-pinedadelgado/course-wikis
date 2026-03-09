@@ -1,24 +1,25 @@
-# Course Wikis 🧑‍🏫
+# Course Wikis 📚
 
-> Public-facing course wikis for CSULB classes — built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
+> Public-facing course wikis and project docs — built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/).
 
-Each folder is a self-contained wiki that can be served and deployed independently.
+**Live site:** [https://jose-pinedadelgado.github.io/course-wikis/](https://jose-pinedadelgado.github.io/course-wikis/)
 
-## Courses
+Each folder is a self-contained MkDocs wiki. GitHub Actions builds all wikis and deploys to GitHub Pages on every push to `main`.
 
-| Folder | Course | Status |
-|--------|--------|--------|
-| `database-management/` | IS 380 — Database Management | ✅ Content available |
-| `advanced-database-management/` | Advanced Database Management | 📋 Planned |
-| `management-information-systems/` | Management Information Systems | 📋 Planned |
-| `systems-analysis-and-design/` | Systems Analysis and Design | 📋 Planned |
-| `agentic-ai-for-business/` | Agentic AI for Business (name TBD) | 📋 Planned |
-| `responsible-ai/` | Responsible AI | 📋 Planned |
+## Contents
 
-## Quick Start
+| Folder | Type | Description |
+|--------|------|-------------|
+| `database-management/` | Course | IS 380 — Database Management |
+| `advanced-database-management-zensical/` | Course | Advanced DB — Zensical edition |
+| `management-information-systems/` | Course | MIS fundamentals |
+| `pd-arena/` | Project | Prisoner's Dilemma agent research |
+| `pacodogshop/` | Project | E-commerce pet shop |
+
+## Local Development
 
 ```bash
-cd database-management   # or any course folder
+cd database-management   # or any wiki folder
 uv sync                  # install dependencies
 uv run mkdocs serve      # serve at http://127.0.0.1:8000
 ```
@@ -30,7 +31,7 @@ uv run mkdocs serve      # serve at http://127.0.0.1:8000
 
 ## Contributing
 
-Students can contribute to any course wiki via Pull Requests. See the `contributing.md` inside each course's `docs/` folder for details.
+Students can contribute via Pull Requests. See `contributing.md` inside each wiki's `docs/` folder.
 
 ## Author
 
