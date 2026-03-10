@@ -1,6 +1,6 @@
 # Intro to Oracle PL/SQL
 
-## What is PL/SQL?
+## What is PL/SQL??
 
 PL/SQL (Procedural Language/SQL) is Oracle's procedural extension to SQL. It combines the data manipulation power of SQL with the processing power of procedural languages.
 
