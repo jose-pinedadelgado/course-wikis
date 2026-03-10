@@ -80,6 +80,11 @@ jobs:
                   <h2>Responsible AI</h2>
                   <p>IS 671 — Fairness, explainability, accountability &amp; privacy in AI</p>
                 </a>
+                <a class="card" href="./bamboo-money/">
+                  <span class="badge project">Project</span>
+                  <h2>Bamboo Money</h2>
+                  <p>Personal finance dashboard — budgets, net worth, AI chatbot, Sankey cash flow</p>
+                </a>
                 <a class="card" href="./pacodogshop/">
                   <span class="badge project">Project</span>
                   <h2>Pacodogshop</h2>
@@ -126,6 +131,13 @@ jobs:
           uv sync --dev
           uv run zensical build
           mv site ../site/pacodogshop
+
+      - name: Build bamboo-money
+        run: |
+          cd bamboo-money
+          uv sync
+          uv run zensical build
+          mv site ../site/bamboo-money
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

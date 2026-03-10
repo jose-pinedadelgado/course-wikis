@@ -1,0 +1,85 @@
+site_name: "Bamboo Money — Personal Finance Dashboard"
+site_description: "A Django-based personal finance app with budgeting, net worth tracking, AI chatbot, and Sankey cash flow visualizations"
+site_author: "Jose Pineda"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: green
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: green
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    logo: material/finance
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Product:
+    - Vision: product/vision.md
+    - User Stories: product/user-stories.md
+    - Roadmap: product/roadmap.md
+  - Features:
+    - Overview: features/index.md
+    - Dashboard: features/dashboard.md
+    - Budgets & Rollover: features/budgets.md
+    - Transactions: features/transactions.md
+    - Net Worth Tracker: features/net-worth.md
+    - Sankey Cash Flow: features/cashflow-sankey.md
+    - CSV Import & Export: features/csv-import-export.md
+    - AI Chatbot: features/chatbot.md
+    - Savings Goals: features/savings-goals.md
+    - Recurring Detection: features/recurring-detection.md
+    - Categorization Rules: features/categorization-rules.md
+    - Excel Export: features/excel-export.md
+    - Dark Mode & i18n: features/dark-mode.md
+  - Architecture:
+    - Tech Stack: architecture/tech-stack.md
+    - Data Model: architecture/data-model.md
+    - Security: architecture/security.md
+  - Guides:
+    - Installation: guides/installation.md
+    - Quick Start: guides/quickstart.md
+  - Testing:
+    - Test Suite: testing/test-suite.md
