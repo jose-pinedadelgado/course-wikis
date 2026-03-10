@@ -4,7 +4,7 @@
 
 > In iterated Prisoner's Dilemma interactions between LLM-based agents, do protocol-level safeguards reduce vulnerability to adversarial exploitation, and does equipping agents with game-theoretic awareness further improve cooperative outcomes beyond what protocols alone provide?
 
-## Why This Matters
+## Why This Matters?
 
 LLM-based agents are increasingly deployed in multi-agent systems where they interact with other agents — negotiating, trading, sharing resources. These interactions often have the structure of social dilemmas: each agent can benefit individually by defecting, but mutual cooperation produces better collective outcomes.
 
