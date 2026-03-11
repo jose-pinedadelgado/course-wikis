@@ -66,6 +66,8 @@ nav:
     - "Lab 3 Solutions: SQL in PL/SQL & Cursors": modules/lab3-solutions.md
   - "Week 6-7: Exceptions & Packages":
     - "Lab 4 Solutions: Packages & Exceptions": modules/lab4-solutions.md
+  - "Semester Project":
+    - Project Specification: modules/project-spec.md
   - Lab Reference:
     - Schema & Dataset: modules/lab-schema.md
     - Lab Exercises: modules/lab-exercises.md
