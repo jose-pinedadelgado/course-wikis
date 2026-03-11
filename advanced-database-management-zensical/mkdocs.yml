@@ -66,6 +66,7 @@ nav:
     - "Lab 3 Solutions: SQL in PL/SQL & Cursors": modules/lab3-solutions.md
   - "Week 6-7: Exceptions & Packages":
     - "Lab 4 Solutions: Packages & Exceptions": modules/lab4-solutions.md
+  - "📝 Midterm Study Guide": study-guide.md
   - "Semester Project":
     - Project Specification: modules/project-spec.md
     - "Sample: BambooBudget": modules/project-sample.md
