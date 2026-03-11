@@ -28,6 +28,36 @@ That's the full data pipeline. That's what gets you hired.
 
 ---
 
+## The Pipeline
+
+Every phase builds on the last. Here's the complete architecture you'll build:
+
+```
+Oracle RDS (OLTP tables, 3NF)
+        │
+        │  PL/SQL Package (Phase 1)
+        │  Business logic: procedures, functions,
+        │  cursors, exceptions
+        ▼
+Oracle RDS (Star Schema: fact + dimension tables)
+        │
+        │  PL/SQL ETL Procedures (Phase 2)
+        │  Extract → Transform → Load
+        │  Analytical queries: ROLLUP, RANK, CUBE
+        ▼
+Databricks (Spark SQL + Hive tables)
+        │
+        │  Same analytical queries, different engine (Phase 3)
+        │  PySpark DataFrame API
+        ▼
+Side-by-Side Comparison Report
+        Oracle SQL vs. SparkSQL vs. HiveQL vs. PySpark
+```
+
+**Everything runs on tools you already have (Oracle RDS) or can get for free (Databricks Community Edition). Total cost: $0.**
+
+---
+
 ## Project Overview
 
 **Teams:** 3–4 students
@@ -98,22 +128,30 @@ Build a PL/SQL **package** (specification + body) that demonstrates mastery of e
 
 ### What You'll Build
 
-Transform your OLTP database into an **analytical data warehouse** using the star schema pattern.
+Transform your OLTP database into an **analytical data warehouse** using the star schema pattern — **in the same Oracle RDS instance.** You'll create new star schema tables alongside your existing OLTP tables, then write PL/SQL ETL procedures to populate them.
 
 ### Concepts
 
 ```
-OLTP (Phase 1)                    OLAP (Phase 2)
-┌──────────────┐                  ┌──────────────────┐
-│ Normalized   │   ETL Process    │ Star Schema      │
-│ Tables       │ ──────────────►  │                  │
-│ (3NF)        │   Extract        │  ┌──────┐        │
-│              │   Transform      │  │ FACT │        │
-│ Patients     │   Load           │  │ table│        │
-│ Doctors      │                  │  └──┬───┘        │
-│ Appointments │                  │  ┌──┼──┐         │
-│ Prescriptions│                  │  DIM DIM DIM     │
-└──────────────┘                  └──────────────────┘
+  Same Oracle RDS Instance
+┌─────────────────────────────────────────────┐
+│                                             │
+│  OLTP (Phase 1)         OLAP (Phase 2)      │
+│  ┌──────────────┐       ┌────────────────┐  │
+│  │ Normalized   │  ETL  │ Star Schema    │  │
+│  │ Tables (3NF) │──────►│                │  │
+│  │              │ PL/SQL│  ┌──────┐      │  │
+│  │ Patients     │ procs │  │ FACT │      │  │
+│  │ Doctors      │       │  │ table│      │  │
+│  │ Appointments │       │  └──┬───┘      │  │
+│  │ Prescriptions│       │  ┌──┼──┐       │  │
+│  └──────────────┘       │  DIM DIM DIM   │  │
+│                         └────────────────┘  │
+│                                │            │
+└────────────────────────────────┼────────────┘
+                                 │ Export CSV
+                                 ▼
+                          Databricks (Phase 3)
 ```
 
 ### Requirements
@@ -199,7 +237,8 @@ Take your data warehouse from Phase 2 and **port it to Spark SQL and Hive** on D
 
 1. Sign up for [Databricks Community Edition](https://community.cloud.databricks.com/) (free, no credit card)
 2. Create a notebook (Python + SQL)
-3. Upload your warehouse data as CSV files
+3. Export your star schema tables from Oracle RDS as CSV files (use SQL Developer's export feature or a simple Python script)
+4. Upload the CSVs into Databricks
 
 ### Requirements
 
