@@ -80,6 +80,11 @@ jobs:
                   <h2>Responsible AI</h2>
                   <p>IS 671 — Fairness, explainability, accountability &amp; privacy in AI</p>
                 </a>
+                <a class="card" href="./ml-systems-engineering/">
+                  <span class="badge project">Study</span>
+                  <h2>ML Systems Engineering</h2>
+                  <p>Field guide for staff-level ML roles — post-training, distributed systems, recsys, Spark/Hive</p>
+                </a>
                 <a class="card" href="./bamboo-money/">
                   <span class="badge project">Project</span>
                   <h2>Bamboo Money</h2>
@@ -131,6 +136,13 @@ jobs:
           uv sync --dev
           uv run zensical build
           mv site ../site/pacodogshop
+
+      - name: Build ml-systems-engineering
+        run: |
+          cd ml-systems-engineering
+          uv sync
+          uv run zensical build
+          mv site ../site/ml-systems-engineering
 
       - name: Build bamboo-money
         run: |
