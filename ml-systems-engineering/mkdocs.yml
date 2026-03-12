@@ -1,0 +1,117 @@
+site_name: "ML Systems Engineering — Field Guide"
+site_description: "A comprehensive study guide for staff-level ML engineering roles at Netflix, Google, Meta, and beyond"
+site_author: "Jose Pineda"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    logo: material/brain
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - "1. LLM Post-Training":
+    - Overview: post-training/index.md
+    - Supervised Fine-Tuning (SFT): post-training/sft.md
+    - RLHF & Reward Modeling: post-training/rlhf.md
+    - DPO & Offline Methods: post-training/dpo.md
+    - "GRPO & On-Policy RL": post-training/grpo.md
+    - LoRA & Parameter-Efficient Methods: post-training/lora.md
+    - Knowledge Distillation: post-training/distillation.md
+    - "Case Study: Netflix Post-Training Framework": post-training/netflix-framework.md
+  - "2. Distributed Training":
+    - Overview: distributed/index.md
+    - Data Parallelism & FSDP: distributed/fsdp.md
+    - Tensor & Pipeline Parallelism: distributed/tensor-parallelism.md
+    - Ray for ML Orchestration: distributed/ray.md
+    - Checkpointing & Fault Tolerance: distributed/checkpointing.md
+    - MFU & Performance Monitoring: distributed/mfu.md
+  - "3. ML Inference & Serving":
+    - Overview: inference/index.md
+    - vLLM & Serving Engines: inference/vllm.md
+    - KV Cache & Memory Management: inference/kv-cache.md
+    - Quantization: inference/quantization.md
+    - Batching Strategies: inference/batching.md
+  - "4. Data at Scale":
+    - Overview: data/index.md
+    - Apache Spark SQL: data/spark.md
+    - Apache Hive: data/hive.md
+    - Feature Stores & Pipelines: data/feature-stores.md
+    - Data for Post-Training: data/training-data.md
+  - "5. Recommender Systems":
+    - Overview: recsys/index.md
+    - Collaborative Filtering & Embeddings: recsys/embeddings.md
+    - Two-Tower & Retrieval Models: recsys/two-tower.md
+    - Semantic IDs & Content Understanding: recsys/semantic-ids.md
+    - Personalization at Netflix: recsys/netflix-personalization.md
+  - "6. Transformers Deep Dive":
+    - Overview: transformers/index.md
+    - Self-Attention & Multi-Head Attention: transformers/attention.md
+    - Positional Encoding: transformers/positional-encoding.md
+    - Mixture of Experts (MoE): transformers/moe.md
+    - Modern Architectures (Qwen, Gemma, Llama): transformers/modern-architectures.md
+  - "7. RL for LLMs":
+    - Overview: rl/index.md
+    - Policy Gradient & PPO: rl/ppo.md
+    - "GRPO (Group Relative Policy Optimization)": rl/grpo-deep-dive.md
+    - Reward Modeling: rl/reward-modeling.md
+    - "On-Policy vs Off-Policy": rl/on-vs-off-policy.md
+  - "8. MLOps & Infrastructure":
+    - Overview: mlops/index.md
+    - Experiment Tracking: mlops/experiment-tracking.md
+    - CI/CD for Models: mlops/ci-cd.md
+    - A/B Testing & Evaluation: mlops/ab-testing.md
+  - "Target Roles": roles.md
+  - "Reading List": reading-list.md
