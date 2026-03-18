@@ -1,0 +1,17 @@
+# Build / temp
+tmp/
+site/
+
+# Django collected static
+static/admin/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Editor / OS
+.cache/
+.DS_Store
+Thumbs.db

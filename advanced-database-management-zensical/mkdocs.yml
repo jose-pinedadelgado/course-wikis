@@ -70,6 +70,9 @@ nav:
     - "📝 Midterm Study Guide": study-guide.md
   - "Week 10-12: Data Warehousing":
     - "Star Schema & ETL": modules/data-warehousing.md
+    - "Week 10 Lecture: Star Schema Design": modules/week10-star-schema-lecture.md
+    - "Week 10 Exercise": modules/week10-exercise.md
+    - "📋 Kimball Cheat Sheet": modules/kimball-cheat-sheet.md
   - "Week 13-15: Spark & Hive":
     - "Apache Spark & Hive": modules/spark-hive.md
   - "Semester Project":

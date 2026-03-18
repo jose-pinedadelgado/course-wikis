@@ -1,0 +1,6 @@
+site_name: test
+site_description: test
+theme:
+  name: material
+nav:
+  - index.md
