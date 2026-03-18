@@ -1,0 +1,17 @@
+# Sensitive / private content — keep in is480-private repo
+midterm-grading/
+docs/modules/lab*-solutions.md
+
+# OS / editor
+.DS_Store
+~$*
+*.tmp
+Thumbs.db
+
+# Build output
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
