@@ -8,78 +8,92 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/night.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
     <style>
+        :root { --r-heading-font: 'Segoe UI', Tahoma, sans-serif; }
         .reveal h1 { font-size: 1.8em; }
         .reveal h2 { font-size: 1.4em; }
         .reveal h3 { font-size: 1.1em; }
-        .reveal table { font-size: 0.65em; }
-        .reveal pre { font-size: 0.55em; width: 100%; }
-        .reveal li { font-size: 0.75em; margin-bottom: 0.3em; }
-        .reveal p { font-size: 0.75em; }
-        .reveal .small { font-size: 0.6em; }
+        .reveal table { font-size: 0.65em; margin: 0.3em auto; }
+        .reveal pre { font-size: 0.52em; width: 100%; }
+        .reveal li { font-size: 0.73em; margin-bottom: 0.25em; }
+        .reveal p { font-size: 0.73em; }
+        .reveal .small { font-size: 0.58em; }
         .reveal .highlight-box {
             background: rgba(66, 133, 244, 0.15);
             border-left: 4px solid #4285f4;
-            padding: 0.5em 1em;
-            margin: 0.5em 0;
-            border-radius: 4px;
+            padding: 0.4em 0.8em; margin: 0.4em 0; border-radius: 4px;
+            font-size: 0.7em;
         }
         .reveal .warning-box {
             background: rgba(234, 67, 53, 0.15);
             border-left: 4px solid #ea4335;
-            padding: 0.5em 1em;
-            margin: 0.5em 0;
-            border-radius: 4px;
+            padding: 0.4em 0.8em; margin: 0.4em 0; border-radius: 4px;
+            font-size: 0.7em;
         }
         .reveal .success-box {
             background: rgba(52, 168, 83, 0.15);
             border-left: 4px solid #34a853;
-            padding: 0.5em 1em;
-            margin: 0.5em 0;
-            border-radius: 4px;
+            padding: 0.4em 0.8em; margin: 0.4em 0; border-radius: 4px;
+            font-size: 0.7em;
+        }
+        .reveal .exercise-box {
+            background: rgba(251, 188, 4, 0.15);
+            border-left: 4px solid #fbbc04;
+            padding: 0.4em 0.8em; margin: 0.4em 0; border-radius: 4px;
+            font-size: 0.7em;
         }
         .reveal blockquote {
-            font-size: 0.7em;
-            font-style: italic;
-            border-left: 3px solid #666;
-            padding-left: 1em;
+            font-size: 0.68em; font-style: italic;
+            border-left: 3px solid #666; padding-left: 1em;
         }
+        .reveal .two-col { display: flex; gap: 1em; }
+        .reveal .two-col > div { flex: 1; }
+        .timer { position: fixed; bottom: 10px; right: 20px; font-size: 1.2em;
+                 color: #fbbc04; font-weight: bold; z-index: 100; display: none; }
     </style>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 
-<!-- TITLE -->
+<!-- ═══════════════════════════════════════════════════════
+     TITLE (1 min)
+     ═══════════════════════════════════════════════════════ -->
 <section>
     <h1>📊 Data Warehousing<br>& Star Schema Design</h1>
     <h3>IS480 — Advanced Database Management</h3>
     <p>Week 10 | Prof. Jose Pineda | CSULB Spring 2026</p>
+    <p class="small">📖 Reading: Kimball, <em>The Data Warehouse Toolkit</em> — Ch 1-3</p>
 </section>
 
 <!-- AGENDA -->
 <section>
-    <h2>Today's Agenda</h2>
-    <ol>
-        <li>Why Data Warehouses?</li>
-        <li>Star Schema Design (Kimball's 4-Step Process)</li>
-        <li>Star vs Snowflake</li>
-        <li>Slowly Changing Dimensions</li>
-        <li>ETL: Extract, Transform, Load</li>
-        <li>Analytical SQL Preview</li>
-        <li>Connecting to Your Project (Phase 2)</li>
-    </ol>
-    <p class="small">📖 Reading: Kimball, <em>The Data Warehouse Toolkit</em> — Ch 1</p>
+    <h2>Today's Roadmap (1 hour)</h2>
+    <table>
+        <tr><th>Time</th><th>Topic</th><th>Mode</th></tr>
+        <tr><td>0:00</td><td>Why Data Warehouses? (OLTP vs OLAP)</td><td>📖 Lecture</td></tr>
+        <tr><td>0:10</td><td>Star Schema: Kimball's 4-Step Process</td><td>📖 Lecture</td></tr>
+        <tr><td>0:20</td><td>🏋️ Exercise Part A: Identify Components</td><td>✏️ Individual</td></tr>
+        <tr><td>0:30</td><td>Key Details: Facts, SCDs, Star vs Snowflake</td><td>📖 Lecture</td></tr>
+        <tr><td>0:40</td><td>🏋️ Exercise Part B: Millennium College</td><td>✏️ Individual</td></tr>
+        <tr><td>0:50</td><td>Phase 2 Preview + Homework</td><td>📖 Wrap-up</td></tr>
+    </table>
+    <div class="success-box">
+        📋 <strong>Download the exercise sheet</strong> from Canvas before we start!
+    </div>
 </section>
 
-<!-- PART 1: WHY -->
+<!-- ═══════════════════════════════════════════════════════
+     PART 1: WHY DATA WAREHOUSES? (~10 min)
+     ═══════════════════════════════════════════════════════ -->
 <section>
     <section>
         <h2>Part 1: Why Data Warehouses?</h2>
         <h3>The Problem with OLTP for Analytics</h3>
+        <p class="small">⏱️ ~10 minutes</p>
     </section>
-    
+
     <section>
-        <h2>Your CEO Asks...</h2>
+        <h2>Your CEO Walks In...</h2>
         <blockquote>
             "Show me revenue by department, by quarter, for the last 3 years — and compare it to last year."
         </blockquote>
@@ -88,30 +102,33 @@
             <ul>
                 <li>5+ JOINs across normalized tables</li>
                 <li>Aggregations across millions of rows</li>
-                <li>Competes with real-time transactions</li>
+                <li>Competes with real-time transactions (customers waiting!)</li>
                 <li>Takes minutes to hours</li>
             </ul>
         </div>
         <div class="fragment warning-box">
-            <strong>Wrong tool for the job.</strong> You need a system designed for analysis.
+            <strong>Wrong tool for the job.</strong> OLTP is optimized for writes, not reads.
         </div>
     </section>
-    
+
     <section>
         <h2>Two Worlds of Data</h2>
         <blockquote>
             "The operational systems are where you <strong>put the data in</strong>, and the DW/BI system is where you <strong>get the data out</strong>."
-            <br>— Kimball
+            — Kimball
         </blockquote>
         <table>
-            <tr><th></th><th>OLTP (Operational)</th><th>OLAP (Warehouse)</th></tr>
+            <tr><th></th><th>OLTP (Phase 1)</th><th>OLAP (Phase 2)</th></tr>
             <tr><td><strong>Purpose</strong></td><td>Run the business</td><td>Analyze the business</td></tr>
-            <tr><td><strong>Users</strong></td><td>Apps, clerks</td><td>Managers, analysts</td></tr>
-            <tr><td><strong>Operations</strong></td><td>INSERT/UPDATE 1 row</td><td>SELECT+GROUP BY millions</td></tr>
+            <tr><td><strong>Users</strong></td><td>Apps, clerks</td><td>Managers, analysts, execs</td></tr>
+            <tr><td><strong>Operations</strong></td><td>INSERT/UPDATE 1 row</td><td>SELECT + GROUP BY millions</td></tr>
             <tr><td><strong>Schema</strong></td><td>Normalized (3NF)</td><td>Denormalized (Star)</td></tr>
             <tr><td><strong>Data</strong></td><td>Current state</td><td>Historical snapshots</td></tr>
-            <tr><td><strong>Volume</strong></td><td>GBs</td><td>TBs to PBs</td></tr>
+            <tr><td><strong>Redundancy</strong></td><td>Eliminated ✅</td><td>Intentional ✅</td></tr>
         </table>
+        <div class="fragment highlight-box">
+            💡 <strong>The big irony:</strong> In Phase 1 you fought to eliminate redundancy. In Phase 2, you'll <em>add it back</em> on purpose.
+        </div>
     </section>
 
     <section>
@@ -128,28 +145,53 @@
                                        │  DIM  DIM  DIM      │
                                        └─────────────────────┘
         </code></pre>
-        <p>Netflix: petabytes of viewing data · Walmart: 1M+ transactions/hour</p>
+        <div class="two-col">
+            <div class="highlight-box">
+                <strong>Netflix:</strong> Petabytes of viewing data analyzed daily
+            </div>
+            <div class="highlight-box">
+                <strong>Walmart:</strong> 1M+ transactions/hour → star schemas for analytics
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Quick Check: Why Not Just Add Indexes?</h2>
+        <div class="exercise-box">
+            🤔 <strong>Think-Pair-Share (30 sec):</strong> Why can't we just create more indexes on the OLTP tables and run analytics there?
+        </div>
+        <div class="fragment">
+            <ul>
+                <li><strong>Lock contention</strong> — Analytical queries lock rows that transactions need</li>
+                <li><strong>No historical data</strong> — OLTP only keeps current state (e.g., what was the price <em>last year</em>?)</li>
+                <li><strong>Wrong structure</strong> — 3NF requires too many JOINs for aggregation</li>
+                <li><strong>Index overhead</strong> — More indexes = slower writes for OLTP</li>
+            </ul>
+        </div>
     </section>
 </section>
 
-<!-- PART 2: STAR SCHEMA -->
+<!-- ═══════════════════════════════════════════════════════
+     PART 2: STAR SCHEMA DESIGN (~10 min)
+     ═══════════════════════════════════════════════════════ -->
 <section>
     <section>
         <h2>Part 2: Star Schema Design</h2>
         <h3>Kimball's 4-Step Process</h3>
+        <p class="small">⏱️ ~10 minutes</p>
     </section>
 
     <section>
         <h2>The 4 Steps</h2>
         <table>
-            <tr><th>Step</th><th>Question</th><th>Hospital Example</th></tr>
-            <tr class="fragment"><td><strong>1. Business Process</strong></td><td>What activity generates events?</td><td>Patient appointments</td></tr>
-            <tr class="fragment"><td><strong>2. Declare the Grain</strong></td><td>What is ONE row?</td><td>One appointment</td></tr>
-            <tr class="fragment"><td><strong>3. Identify Dimensions</strong></td><td>Who/what/where/when?</td><td>Patient, Doctor, Date, Dept</td></tr>
-            <tr class="fragment"><td><strong>4. Identify Facts</strong></td><td>What numbers to measure?</td><td>Cost, wait time, Rx count</td></tr>
+            <tr><th>#</th><th>Step</th><th>Question to Ask</th><th>Hospital Example</th></tr>
+            <tr class="fragment"><td>1</td><td><strong>Business Process</strong></td><td>What activity generates events?</td><td>Patient appointments</td></tr>
+            <tr class="fragment"><td>2</td><td><strong>Declare the Grain</strong></td><td>What is ONE row?</td><td>"One appointment"</td></tr>
+            <tr class="fragment"><td>3</td><td><strong>Dimensions</strong></td><td>Who/what/where/when?</td><td>Patient, Doctor, Date, Dept</td></tr>
+            <tr class="fragment"><td>4</td><td><strong>Facts (Measures)</strong></td><td>What numbers to measure?</td><td>Cost, wait_time, Rx_count</td></tr>
         </table>
         <div class="fragment warning-box">
-            ⚠️ <strong>Kimball's #1 warning:</strong> Never skip Step 2. If the grain isn't defined, the design rests on quicksand.
+            ⚠️ <strong>Kimball's #1 warning:</strong> "The most common design error is skipping Step 2. Without declaring the grain, the rest of the design rests on quicksand."
         </div>
     </section>
 
@@ -157,51 +199,159 @@
         <h2>Star Schema Anatomy</h2>
         <pre><code class="text">
                     ┌──────────────┐
-                    │  dim_date    │   ← DIMENSION
-                    └──────┬───────┘     (descriptive context)
-                           │
+                    │  dim_date    │   ← DIMENSION TABLE
+                    └──────┬───────┘     (WHO / WHAT / WHEN / WHERE)
+                           │             (wide, descriptive, ~1000s rows)
   ┌──────────────┐  ┌──────┴──────────────┐  ┌──────────────┐
   │ dim_patient  │──┤  fact_appointments  │──┤ dim_department│
   └──────────────┘  │─────────────────────│  └──────────────┘
                     │ patient_key     FK  │
-  ┌──────────────┐  │ doctor_key      FK  │
-  │ dim_doctor   │──┤ date_key        FK  │   ← FACT TABLE
-  └──────────────┘  │ dept_key        FK  │   (events + measures)
+  ┌──────────────┐  │ doctor_key      FK  │   ← FACT TABLE
+  │ dim_doctor   │──┤ date_key        FK  │     (events + measures)
+  └──────────────┘  │ dept_key        FK  │     (narrow, tall, millions of rows)
                     │─── MEASURES ───────│
-                    │ visit_count        │
-                    │ total_cost         │
-                    │ wait_time_min      │
-                    └────────────────────┘
+                    │ visit_count         │
+                    │ total_cost          │
+                    │ wait_time_min       │
+                    └─────────────────────┘
         </code></pre>
-        <p>Called a <strong>"star"</strong> because dimensions radiate from the central fact table.</p>
+        <p>Called a <strong>"star"</strong> because dimensions radiate outward from the central fact table.</p>
+    </section>
+
+    <section>
+        <h2>Fact Table Rules</h2>
+        <table>
+            <tr><th>Rule</th><th>Details</th></tr>
+            <tr><td>One row = one event</td><td>Each row is a real-world measurable occurrence</td></tr>
+            <tr><td>Foreign keys to dimensions</td><td>One FK column per dimension</td></tr>
+            <tr><td>Numeric measures</td><td>SUM-able, AVG-able, COUNT-able numbers</td></tr>
+            <tr><td>Uniform grain</td><td><strong>Never mix different grains</strong> in the same table</td></tr>
+            <tr><td>No text</td><td>Descriptive text belongs in dimensions</td></tr>
+        </table>
+        <div class="highlight-box">
+            💡 <strong>Fact tables are narrow and TALL</strong> (millions/billions of rows, ~5-10 columns).<br>
+            <strong>Dimension tables are WIDE and short</strong> (thousands of rows, ~20-50 columns).
+        </div>
+    </section>
+
+    <section>
+        <h2>Dimension Table Rules</h2>
+        <table>
+            <tr><th>Rule</th><th>Details</th></tr>
+            <tr><td>Surrogate key (PK)</td><td>Integer, system-generated — not the business key</td></tr>
+            <tr><td>Wide and flat</td><td>Denormalized — flatten hierarchies (dept + category + brand all in one table)</td></tr>
+            <tr><td>Text-heavy</td><td>Verbose descriptions, not codes</td></tr>
+            <tr><td>Relatively small</td><td>Thousands to low millions of rows</td></tr>
+        </table>
+        <div class="fragment">
+            <h3>Why Surrogate Keys?</h3>
+            <ul>
+                <li>Business keys <strong>change</strong> (employee rehired with new ID)</li>
+                <li>Multiple source systems may have <strong>conflicting</strong> keys</li>
+                <li>SCD Type 2 needs <strong>multiple rows</strong> for same entity</li>
+            </ul>
+        </div>
+        <div class="fragment highlight-box">
+            <strong>Exception:</strong> <code>dim_date</code> can use YYYYMMDD integer as PK (it's stable and meaningful).
+        </div>
+    </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     EXERCISE PART A (~10 min)
+     ═══════════════════════════════════════════════════════ -->
+<section>
+    <section>
+        <h2>🏋️ Exercise Part A</h2>
+        <h3>Identify the Components (10 min)</h3>
+        <div class="exercise-box">
+            For each scenario, identify: <strong>Business Process, Grain, Dimensions, Measures</strong>.<br>
+            Work individually, then we'll discuss.
+        </div>
+    </section>
+
+    <section>
+        <h2>Scenario 1: University Registrar</h2>
+        <p>A university wants to analyze <strong>student enrollment patterns</strong>. The OLTP system tracks students registering for course sections each semester.</p>
+        <table>
+            <tr><th>Component</th><th>Your Answer</th></tr>
+            <tr><td><strong>Business Process</strong></td><td></td></tr>
+            <tr><td><strong>Grain</strong> (one row per ___)</td><td></td></tr>
+            <tr><td><strong>Dimensions</strong></td><td></td></tr>
+            <tr><td><strong>Measures</strong></td><td></td></tr>
+        </table>
+        <div class="fragment success-box">
+            ✅ Process: Student enrollment | Grain: one enrollment (student + section + semester)<br>
+            Dims: dim_student, dim_course, dim_instructor, dim_semester/date<br>
+            Measures: grade_value, credit_hours, enrollment_count (=1)
+        </div>
+    </section>
+
+    <section>
+        <h2>Scenario 2: Online Streaming (Netflix)</h2>
+        <p>A streaming platform wants to analyze <strong>viewing patterns</strong>. Every watch event is logged.</p>
+        <table>
+            <tr><th>Component</th><th>Your Answer</th></tr>
+            <tr><td><strong>Business Process</strong></td><td></td></tr>
+            <tr><td><strong>Grain</strong></td><td></td></tr>
+            <tr><td><strong>Dimensions</strong></td><td></td></tr>
+            <tr><td><strong>Measures</strong></td><td></td></tr>
+        </table>
+        <div class="fragment success-box">
+            ✅ Process: Content viewing | Grain: one viewing session (user + content + timestamp)<br>
+            Dims: dim_user (tier, country), dim_content (title, genre, rating), dim_date, dim_device<br>
+            Measures: watch_duration_min, completion_pct, pause_count
+        </div>
+    </section>
+
+    <section>
+        <h2>Scenario 3: Hospital ER</h2>
+        <p>A hospital wants to analyze <strong>ER visit patterns</strong> to optimize staffing and reduce wait times.</p>
+        <table>
+            <tr><th>Component</th><th>Your Answer</th></tr>
+            <tr><td><strong>Business Process</strong></td><td></td></tr>
+            <tr><td><strong>Grain</strong></td><td></td></tr>
+            <tr><td><strong>Dimensions</strong></td><td></td></tr>
+            <tr><td><strong>Measures</strong></td><td></td></tr>
+        </table>
+        <div class="fragment success-box">
+            ✅ Process: ER visits | Grain: one ER visit<br>
+            Dims: dim_patient (age_group, gender, insurance), dim_provider, dim_date (date, hour, shift), dim_diagnosis<br>
+            Measures: wait_time_min, treatment_duration_min, total_charges, num_procedures
+        </div>
+    </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PART 3: KEY DETAILS (~10 min)
+     ═══════════════════════════════════════════════════════ -->
+<section>
+    <section>
+        <h2>Part 3: Key Details</h2>
+        <h3>Facts, SCDs, Star vs Snowflake</h3>
+        <p class="small">⏱️ ~10 minutes</p>
     </section>
 
     <section>
         <h2>Three Types of Facts</h2>
         <table>
             <tr><th>Type</th><th>Can SUM across...</th><th>Example</th></tr>
-            <tr><td><strong>Additive</strong></td><td>ALL dimensions ✅</td><td>Revenue, quantity, cost</td></tr>
-            <tr><td><strong>Semi-additive</strong></td><td>Some (not time) ⚠️</td><td>Account balance</td></tr>
-            <tr><td><strong>Non-additive</strong></td><td>NONE ❌</td><td>Unit price, ratios</td></tr>
-        </table>
-        <div class="fragment highlight-box">
-            💡 <strong>Kimball's rule:</strong> "Ratio of the sums, not sum of the ratios."<br>
-            Store components → compute in query.
-        </div>
-    </section>
-
-    <section>
-        <h2>The Unit Price Trap</h2>
-        <p>You sold 1 widget at $1.00 and 4 widgets at $0.50 each.</p>
-        <table>
-            <tr><th></th><th>Quantity</th><th>Unit Price</th><th>Revenue</th></tr>
-            <tr><td>Sale 1</td><td>1</td><td>$1.00</td><td>$1.00</td></tr>
-            <tr><td>Sale 2</td><td>4</td><td>$0.50</td><td>$2.00</td></tr>
-            <tr><td><strong>Total</strong></td><td><strong>5</strong></td><td><strong>???</strong></td><td><strong>$3.00</strong></td></tr>
+            <tr><td><strong>Additive</strong> ✅</td><td>ALL dimensions</td><td>Revenue, quantity, cost</td></tr>
+            <tr><td><strong>Semi-additive</strong> ⚠️</td><td>Some (not time)</td><td>Account balance, inventory level</td></tr>
+            <tr><td><strong>Non-additive</strong> ❌</td><td>NONE</td><td>Unit price, ratios, percentages</td></tr>
         </table>
         <div class="fragment">
-            <p>❌ Wrong: ($1.00 + $0.50) / 2 = <strong>$0.75</strong></p>
-            <p>✅ Correct: $3.00 / 5 = <strong>$0.60</strong></p>
+            <h3>The Unit Price Trap</h3>
+            <table>
+                <tr><th></th><th>Qty</th><th>Unit Price</th><th>Revenue</th></tr>
+                <tr><td>Sale 1</td><td>1</td><td>$1.00</td><td>$1.00</td></tr>
+                <tr><td>Sale 2</td><td>4</td><td>$0.50</td><td>$2.00</td></tr>
+                <tr><td><strong>Total</strong></td><td><strong>5</strong></td><td><strong>???</strong></td><td><strong>$3.00</strong></td></tr>
+            </table>
+            <p>❌ Average price: ($1+$0.50)/2 = $0.75 &nbsp;&nbsp; ✅ Weighted: $3.00/5 = <strong>$0.60</strong></p>
+        </div>
+        <div class="fragment highlight-box">
+            💡 <strong>Kimball:</strong> "Ratio of the sums, not sum of the ratios." Store components → compute in query.
         </div>
     </section>
 
@@ -217,98 +367,74 @@ CREATE TABLE dim_date (
     quarter        NUMBER,              -- 1
     year           NUMBER,              -- 2026
     is_weekend     CHAR(1),             -- 'N'
-    is_holiday     CHAR(1)              -- 'N'
+    is_holiday     CHAR(1),             -- 'N'
+    fiscal_quarter NUMBER               -- company-specific
 );
         </code></pre>
-        <div class="fragment highlight-box">
-            💡 Why not just a DATE column? Because you can't <code>GROUP BY is_holiday</code> or filter by <code>fiscal_quarter</code> without a dimension.
+        <div class="highlight-box">
+            💡 <strong>Why not just a DATE column?</strong> Because you can't <code>GROUP BY is_holiday</code> or filter by <code>fiscal_quarter</code> without a dimension. The dim_date enables <em>slicing</em> time in business terms.
         </div>
     </section>
-</section>
 
-<!-- PART 3: STAR VS SNOWFLAKE -->
-<section>
     <section>
-        <h2>Part 3: Star vs Snowflake</h2>
+        <h2>Slowly Changing Dimensions (SCD)</h2>
+        <p>What happens when Dr. Park transfers from Cardiology → Neurology?</p>
+        <table>
+            <tr><th>Type</th><th>Strategy</th><th>History?</th><th>Use When</th></tr>
+            <tr><td><strong>Type 1</strong></td><td>Overwrite old value</td><td>❌ Lost</td><td>Corrections, don't care about old value</td></tr>
+            <tr><td><strong>Type 2</strong></td><td>Add new row (new surrogate key)</td><td>✅ Full</td><td>Need complete audit trail</td></tr>
+            <tr><td><strong>Type 3</strong></td><td>Add "previous_value" column</td><td>⚠️ 1 change</td><td>Only need current + previous</td></tr>
+        </table>
+        <div class="fragment">
+            <h3>SCD Type 2 Example (Most Common)</h3>
+            <table>
+                <tr><th>doctor_key</th><th>doctor_id</th><th>name</th><th>department</th><th>effective_date</th><th>current_flag</th></tr>
+                <tr><td>101</td><td>D-5432</td><td>Dr. Park</td><td>Cardiology</td><td>2020-01-15</td><td>N</td></tr>
+                <tr><td>247</td><td>D-5432</td><td>Dr. Park</td><td>Neurology</td><td>2025-07-01</td><td>Y</td></tr>
+            </table>
+            <p class="small">Old facts point to key 101 (Cardiology era). New facts → key 247 (Neurology era). <strong>History preserved!</strong></p>
+        </div>
     </section>
-    
+
     <section>
-        <h2>Snowflaking = Normalizing Dimensions</h2>
+        <h2>Star ⭐ vs Snowflake ❄️</h2>
         <pre><code class="text">
 STAR (recommended):              SNOWFLAKE:
 ┌──────────────────┐             ┌──────────────────┐
 │   dim_product    │             │   dim_product    │
 │──────────────────│             │──────────────────│
 │ product_name     │             │ product_name     │
-│ brand_name   ◄───── flat      │ brand_key FK ────┼──► dim_brand
-│ category_name◄───── flat      │ category_key FK ─┼──► dim_category
-│ dept_name    ◄───── flat      └──────────────────┘
+│ brand_name  ◄─── flat         │ brand_key FK ────┼──► dim_brand
+│ category    ◄─── flat         │ category_key FK ─┼──► dim_category
+│ dept_name   ◄─── flat         └──────────────────┘
 └──────────────────┘               More JOINs! ❌
         </code></pre>
-        <table class="fragment">
-            <tr><th></th><th>Star ⭐</th><th>Snowflake ❄️</th></tr>
-            <tr><td>Query speed</td><td>Faster ✅</td><td>Slower</td></tr>
-            <tr><td>Ease of use</td><td>Simpler ✅</td><td>Complex</td></tr>
-            <tr><td>Storage</td><td>More</td><td>Less ✅</td></tr>
-            <tr><td>Kimball says</td><td><strong>USE THIS</strong></td><td>Sparingly</td></tr>
-        </table>
-    </section>
-</section>
-
-<!-- PART 4: SCD -->
-<section>
-    <section>
-        <h2>Part 4: Slowly Changing Dimensions</h2>
-        <p>What happens when Dr. Park changes from Cardiology → Neurology?</p>
-    </section>
-
-    <section>
-        <h2>SCD Types</h2>
         <table>
-            <tr><th>Type</th><th>Strategy</th><th>History?</th></tr>
-            <tr><td><strong>Type 1</strong></td><td>Overwrite old value</td><td>❌ Lost</td></tr>
-            <tr><td><strong>Type 2</strong></td><td>Add new row (new surrogate key)</td><td>✅ Full</td></tr>
-            <tr><td><strong>Type 3</strong></td><td>Add "previous_value" column</td><td>⚠️ Partial</td></tr>
+            <tr><th></th><th>Star ⭐</th><th>Snowflake ❄️</th></tr>
+            <tr><td>Query speed</td><td>Faster (fewer JOINs) ✅</td><td>Slower</td></tr>
+            <tr><td>Ease of use</td><td>Simpler for analysts ✅</td><td>Complex</td></tr>
+            <tr><td>Storage</td><td>More (redundant text)</td><td>Less ✅</td></tr>
+            <tr><td>Kimball says</td><td><strong>"Almost always use this"</strong></td><td>Sparingly, if ever</td></tr>
         </table>
-        <div class="fragment">
-            <h3>Type 2 (Most Common)</h3>
-            <table>
-                <tr><th>doctor_key</th><th>doctor_id</th><th>name</th><th>department</th><th>effective</th><th>current?</th></tr>
-                <tr><td>101</td><td>D-5432</td><td>Dr. Park</td><td>Cardiology</td><td>2020-01</td><td>N</td></tr>
-                <tr><td>247</td><td>D-5432</td><td>Dr. Park</td><td>Neurology</td><td>2025-07</td><td>Y</td></tr>
-            </table>
-            <p class="small">Historical facts → key 101. New facts → key 247. History preserved!</p>
-        </div>
-    </section>
-</section>
-
-<!-- PART 5: ETL -->
-<section>
-    <section>
-        <h2>Part 5: ETL — Extract, Transform, Load</h2>
     </section>
 
     <section>
-        <h2>The ETL Pipeline</h2>
+        <h2>ETL: How Data Gets to the Warehouse</h2>
         <pre><code class="text">
   EXTRACT              TRANSFORM                  LOAD
 ┌──────────────┐  ┌───────────────────┐  ┌────────────────┐
 │ Read from    │  │ Clean & reshape   │  │ Insert into    │
 │ OLTP tables  │─►│ • Deduplicate     │─►│ star schema    │
 │ (SELECT)     │  │ • Standardize     │  │ • Dims FIRST   │
-└──────────────┘  │ • Map keys        │  │ • Facts SECOND │
+└──────────────┘  │ • Flatten/JOIN    │  │ • Facts SECOND │
                   │ • Handle NULLs    │  └────────────────┘
                   └───────────────────┘
         </code></pre>
-        <div class="fragment success-box">
+        <div class="success-box">
             <strong>Good news:</strong> ETL in this course = PL/SQL procedures. You already know how to do this!
         </div>
-    </section>
-
-    <section>
-        <h2>ETL in PL/SQL</h2>
-        <pre><code class="sql">
--- Load a dimension (denormalize with JOINs)
+        <pre class="fragment"><code class="sql">
+-- Example: Load a dimension (denormalize with JOINs)
 CREATE OR REPLACE PROCEDURE load_dim_doctor AS
 BEGIN
     DELETE FROM dim_doctor;
@@ -318,27 +444,70 @@ BEGIN
     JOIN Specialties s ON d.specialty_id = s.spec_id
     JOIN Departments dept ON d.department_id = dept.dept_id;
     COMMIT;
-    DBMS_OUTPUT.PUT_LINE('Loaded ' || SQL%ROWCOUNT || ' doctors');
 END;
-/
         </code></pre>
-        <div class="fragment highlight-box">
-            <strong>Key rule:</strong> Always load dimensions FIRST, then facts (facts need dimension FKs).
-        </div>
     </section>
 </section>
 
-<!-- PART 6: ANALYTICAL SQL PREVIEW -->
+<!-- ═══════════════════════════════════════════════════════
+     EXERCISE PART B (~10 min)
+     ═══════════════════════════════════════════════════════ -->
 <section>
     <section>
-        <h2>Part 6: Analytical SQL Preview</h2>
-        <p>Deep dive next week — here's a taste</p>
+        <h2>🏋️ Exercise Part B</h2>
+        <h3>Millennium College Star Schema (10 min)</h3>
+        <div class="exercise-box">
+            Work individually, then discuss with a neighbor. Use the exercise sheet.
+        </div>
+    </section>
+
+    <section>
+        <h2>The Scenario</h2>
+        <p>Millennium College wants to analyze <strong>course grades over time</strong>.</p>
+        <table>
+            <tr><th>Dimension</th><th>Key Attributes</th><th>~Size</th></tr>
+            <tr><td><strong>CourseSection</strong></td><td>CourseID, SectionNumber, CourseName, Units, RoomID, RoomCapacity</td><td>~500/semester</td></tr>
+            <tr><td><strong>Professor</strong></td><td>ProfID, ProfName, Title, DepartmentID, DepartmentName</td><td>~200</td></tr>
+            <tr><td><strong>Student</strong></td><td>StudentID, StudentName, Major</td><td>~10,000</td></tr>
+            <tr><td><strong>Period</strong></td><td>SemesterID, Year</td><td>30 periods</td></tr>
+        </table>
+        <p>Facts: <strong>Course Grade</strong> and <strong>CompletionDate</strong></p>
+    </section>
+
+    <section>
+        <h2>Questions to Answer</h2>
+        <ol>
+            <li><strong>Draw the star schema</strong> — Fact table in center, dimensions around it</li>
+            <li class="fragment"><strong>Estimate rows in fact table</strong>
+                <div class="small">Hint: 500 sections × 40 students/section × 30 periods = ?</div>
+                <div class="fragment success-box">✅ <strong>600,000 rows</strong></div>
+            </li>
+            <li class="fragment"><strong>Estimate total size in bytes</strong> (6 columns × 15 bytes avg)
+                <div class="fragment success-box">✅ 600,000 × 6 × 15 = <strong>~54 MB</strong> — tiny for a warehouse!</div>
+            </li>
+            <li class="fragment"><strong>If you didn't need a strict star, what would you change?</strong>
+                <div class="fragment success-box">✅ Snowflake Professor from CourseSection (prof teaches section, not a direct fact relationship). Normalize Course from Section. Separate Department from Professor.</div>
+            </li>
+            <li class="fragment"><strong>How do you handle changes?</strong> (Professor changes dept, student changes major)
+                <div class="fragment success-box">✅ <strong>SCD Type 2</strong> — new row with new surrogate key, effective date, current_flag</div>
+            </li>
+        </ol>
+    </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     PART 4: ANALYTICAL SQL PREVIEW + PROJECT (~10 min)
+     ═══════════════════════════════════════════════════════ -->
+<section>
+    <section>
+        <h2>Part 4: Analytical SQL Preview</h2>
+        <p>Full deep dive next week — here's a taste of what your star schema enables</p>
     </section>
 
     <section>
         <h2>ROLLUP — Automatic Subtotals</h2>
         <pre><code class="sql">
-SELECT NVL(d.dept_name, '** ALL **') AS department,
+SELECT NVL(d.dept_name, '** ALL DEPTS **') AS department,
        NVL(doc.doctor_name, '** All Doctors **') AS doctor,
        SUM(f.total_cost) AS revenue
 FROM fact_appointments f
@@ -347,13 +516,17 @@ JOIN dim_doctor doc ON f.doctor_key = doc.doctor_key
 GROUP BY ROLLUP(d.dept_name, doc.doctor_name);
         </code></pre>
         <pre class="fragment"><code class="text">
-DEPARTMENT    DOCTOR          REVENUE
-Cardiology    Dr. Smith       $72,500
-Cardiology    Dr. Jones       $49,000
-Cardiology    ** All **       $121,500  ← subtotal
-Neurology     Dr. Park        $100,500
-** ALL **     ** All **       $300,000  ← grand total
+DEPARTMENT     DOCTOR           REVENUE
+Cardiology     Dr. Smith        $72,500
+Cardiology     Dr. Jones        $49,000
+Cardiology     ** All Doctors **$121,500   ← subtotal
+Neurology      Dr. Park         $100,500
+Neurology      ** All Doctors **$100,500   ← subtotal
+** ALL DEPTS **                 $300,000   ← grand total
         </code></pre>
+        <div class="highlight-box">
+            Without ROLLUP, you'd need UNION ALL of 3 separate GROUP BY queries!
+        </div>
     </section>
 
     <section>
@@ -364,7 +537,7 @@ SELECT * FROM (
     SELECT d.dept_name, doc.doctor_name,
            SUM(f.total_cost) AS revenue,
            RANK() OVER (
-               PARTITION BY d.dept_name 
+               PARTITION BY d.dept_name
                ORDER BY SUM(f.total_cost) DESC
            ) AS rnk
     FROM fact_appointments f
@@ -373,47 +546,68 @@ SELECT * FROM (
     GROUP BY d.dept_name, doc.doctor_name
 ) WHERE rnk <= 3;
         </code></pre>
+        <div class="highlight-box">
+            💡 <code>RANK()</code> = gaps for ties. <code>DENSE_RANK()</code> = no gaps. <code>ROW_NUMBER()</code> = always unique.
+        </div>
     </section>
 </section>
 
-<!-- PART 7: PROJECT -->
+<!-- ═══════════════════════════════════════════════════════
+     PHASE 2 + HOMEWORK
+     ═══════════════════════════════════════════════════════ -->
 <section>
     <section>
         <h2>Phase 2: Your Project</h2>
         <table>
             <tr><th>Deliverable</th><th>What You Need</th></tr>
-            <tr><td>Star Schema</td><td>1 fact + 3-5 dimensions for YOUR domain</td></tr>
+            <tr><td>Star Schema</td><td>1 fact table + 3-5 dimension tables for YOUR domain</td></tr>
             <tr><td>ETL Procedures</td><td>PL/SQL to extract from Phase 1 → load star schema</td></tr>
             <tr><td>Analytical Queries</td><td>5+ queries using ROLLUP, RANK, CUBE, etc.</td></tr>
-            <tr><td>Documentation</td><td>Star schema diagram + explanations</td></tr>
+            <tr><td>Documentation</td><td>Star schema diagram + grain statement + explanations</td></tr>
         </table>
+        <div class="warning-box">
+            ⚠️ <strong>Start now!</strong> Apply the 4-step process to your domain this week with your team. The star schema design is the foundation for everything in Phase 2.
+        </div>
     </section>
 
     <section>
-        <h2>Homework</h2>
+        <h2>Homework (Due Next Week)</h2>
         <ol>
-            <li>📖 <strong>Read:</strong> Kimball Ch 2 (pp. 37-68) + Ch 3 (pp. 69-100)</li>
-            <li>📋 <strong>Download:</strong> Kimball Cheat Sheet</li>
-            <li>👥 <strong>With your team:</strong> Apply the 4-step process to YOUR domain</li>
-            <li>💻 <strong>Write DDL:</strong> CREATE TABLE for your star schema</li>
+            <li>📖 <strong>Read:</strong> Kimball Ch 2 (pp. 37-68) — Techniques Overview</li>
+            <li>📖 <strong>Read:</strong> Kimball Ch 3 (pp. 69-100) — Retail Sales case study</li>
+            <li>📋 <strong>Review:</strong> Kimball Cheat Sheet (on Canvas)</li>
+            <li>👥 <strong>Team work:</strong> Apply 4-step process to YOUR domain. Submit:
+                <ul>
+                    <li>Grain statement</li>
+                    <li>Star schema diagram</li>
+                    <li>CREATE TABLE DDL for fact + all dimensions</li>
+                </ul>
+            </li>
+            <li>🤔 <strong>Think:</strong> What 5 analytical questions would a manager in your domain want answered?</li>
         </ol>
         <div class="success-box">
-            💡 Next week: Hands-on lab — build a star schema + ETL + analytical queries
+            💡 Next week: Hands-on lab — build a star schema + write ETL + run analytical queries in Oracle
         </div>
     </section>
 </section>
 
-<!-- TAKEAWAYS -->
+<!-- ═══════════════════════════════════════════════════════
+     TAKEAWAYS
+     ═══════════════════════════════════════════════════════ -->
 <section>
-    <h2>Key Takeaways</h2>
+    <h2>🔑 Key Takeaways</h2>
     <ol>
-        <li><strong>OLTP ≠ OLAP</strong> — Different systems for different purposes</li>
-        <li><strong>Star Schema = Fact + Dimensions</strong></li>
-        <li><strong>4-Step Process</strong> — Process → Grain → Dimensions → Facts</li>
-        <li><strong>Never skip the grain!</strong></li>
-        <li><strong>ETL is PL/SQL</strong> — You already have the skills</li>
-        <li><strong>This gets you hired</strong> — $200K-$750K roles list these skills</li>
+        <li><strong>OLTP ≠ OLAP</strong> — You <em>put data in</em> one, <em>get data out</em> of the other</li>
+        <li><strong>Star Schema = Fact + Dimensions</strong> — facts are events, dims are context</li>
+        <li><strong>4-Step Process:</strong> Process → Grain → Dimensions → Facts</li>
+        <li><strong>Never skip the grain!</strong> — One row = one clearly defined event</li>
+        <li><strong>Denormalization is intentional</strong> — redundancy speeds up reads</li>
+        <li><strong>SCD Type 2</strong> preserves history (new row, new surrogate key)</li>
+        <li><strong>ETL = PL/SQL</strong> — You already have the skills from Phase 1</li>
     </ol>
+    <div class="highlight-box">
+        🎯 <strong>This gets you hired.</strong> Data engineering roles ($150K-$300K+) list star schemas, ETL, and analytical SQL as core requirements.
+    </div>
 </section>
 
 </div><!-- /slides -->
@@ -424,10 +618,14 @@ SELECT * FROM (
 <script>
 Reveal.initialize({
     hash: true,
-    slideNumber: true,
+    slideNumber: 'c/t',
+    showSlideNumber: 'all',
     plugins: [RevealHighlight],
     transition: 'slide',
-    backgroundTransition: 'fade'
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.04
 });
 </script>
 </body>
