@@ -6,11 +6,16 @@ PD Arena is the web interface for our research project studying how AI agents co
 
 ## Research Question
 
-In iterated Prisoner's Dilemma interactions between LLM-based agents:
+> *RQ: In iterated PD interactions between LLM-based agents, do protocol-level safeguards reduce vulnerability to adversarial exploitation, and does equipping agents with game-theoretic awareness further improve cooperative outcomes beyond what protocols alone provide?*
 
-1. Do **protocol-level safeguards** (MCP-like structured communication) reduce vulnerability to adversarial exploitation?
-2. Does equipping agents with **game-theoretic awareness** improve cooperative outcomes beyond what protocols alone provide?
-3. How do **agent architecture features** (memory, identity persistence, tools) affect cooperation stability?
+## Preliminary Results (Phase 1)
+
+Phase 1 baseline experiments with **gpt-4.1-mini** (temperature=0, 50-round fixed horizon) tested 3 personas × 6 policy agents:
+
+- **Cooperative personas outperform selfish ones by 27%** — strategic cooperator averaged 132.4/game vs. ruthless optimizer at 104.3
+- Both cooperative personas achieved **perfect mutual cooperation** (rate=1.0, payoff=150) against 5 of 6 opponents (TFT, GRIM, GTFT, WSLS, ALLC)
+- Against Always Defect, cooperative agents adapted quickly, reducing cooperation to 0.11
+- The ruthless optimizer scored highest in a single matchup (250 vs. ALLC) but was **consistently punished** by retaliatory opponents
 
 ## What Can You Do?
 
@@ -29,11 +34,11 @@ In iterated Prisoner's Dilemma interactions between LLM-based agents:
 
 | Phase | What's Built | Tests |
 |-------|-------------|:---:|
-| **Phase 1** | CrewAI integration, 3 framings, meta-prompting, retry logic, CIs | 120 |
-| **Phase 2** | Chat phase, MCP protocol, deception metrics, memory/identity | 269 |
+| **Phase 1** | CrewAI integration, 3 framings, meta-prompting, retry logic, CIs. **Preliminary results complete.** | 120 |
+| **Phase 2** | Chat phase, MCP protocol, deception metrics, memory/identity. **In progress.** | 269 |
 | **Phase 3** | Sandboxed tools, violation detection, goal framing | 321 |
 
-**All phases complete. 321 tests passing. Ready for live experiments.**
+**All phases built. 321 tests passing. Phase 1 baseline results collected. Phase 2 experiments next.**
 
 ## Quick Start
 

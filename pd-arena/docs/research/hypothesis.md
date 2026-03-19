@@ -1,8 +1,8 @@
 # Hypothesis & Motivation
 
-## Core Hypothesis
+## Core Research Question
 
-> In iterated Prisoner's Dilemma interactions between LLM-based agents, do protocol-level safeguards reduce vulnerability to adversarial exploitation, and does equipping agents with game-theoretic awareness further improve cooperative outcomes beyond what protocols alone provide?
+> *RQ: In iterated PD interactions between LLM-based agents, do protocol-level safeguards reduce vulnerability to adversarial exploitation, and does equipping agents with game-theoretic awareness further improve cooperative outcomes beyond what protocols alone provide?*
 
 ## Why This Matters?
 
@@ -31,21 +31,54 @@ The IPD is the canonical model for studying cooperation under conflict of intere
 | Nobody mapped **LLM personas** to classical strategies using canonical baselines | We test 5 persona types against all 6 canonical PD strategies |
 | Nobody published this in **IS venues** | We target ICIS/AMCIS/JAIS with a governance + design science framing |
 
-## The 2×2 Design
+## Phase 2 Experimental Design (3 IVs)
 
-Our core experimental design varies two factors:
+Phase 2 manipulates three independent variables:
+
+### 1. Agent Personality (6 levels)
+
+| Personality | Description |
+|-------------|-------------|
+| **Naive** | No strategic awareness — cooperates by default |
+| **Aware** | Basic defensive posture — recognizes exploitation |
+| **Strategic** | Explicit game-theoretic reasoning |
+| **Deceptive** | Appears cooperative but exploits when optimal |
+| **Manipulative** | Actively influences opponent behavior via communication |
+| **Cooperative** | Genuine mutual benefit orientation |
+
+These operationalize a gradient from vulnerability to adversarial intent.
+
+### 2. Pre-decision Communication (2 levels)
+
+| Level | Description |
+|-------|-------------|
+| **Off** | Standard PD — choose based on history only |
+| **On** | Agents exchange messages before choosing each round |
+
+### 3. Protocol Mode (2 levels)
+
+| Level | Description |
+|-------|-------------|
+| **Unstructured** | Free-form interaction |
+| **Structured** | Protocol validator enforces format, schema, and authorization (MCP-like) |
+
+### The 2×2 Core (Chat × Protocol)
 
 |  | No Chat | Chat |
 |---|---------|------|
 | **Unstructured** | Pure PD baseline | Communication without safeguards |
 | **Structured (MCP)** | Protocol-only | Communication with protocol safeguards |
 
-This produces four conditions, each revealing a different aspect:
+### Full Factorial: 6 × 2 × 2 = 24 conditions (per opponent type)
 
-1. **No Chat + Unstructured**: Baseline. How do agents behave with no communication and no protocol?
-2. **Chat + Unstructured**: Does cheap talk help cooperation? Or enable deception?
-3. **No Chat + Structured**: Do protocols alone (without communication) affect behavior?
-4. **Chat + Structured**: The full governance stack. Does MCP + communication produce the best outcomes?
+## Preliminary Results (Phase 1)
+
+Phase 1 baseline experiments with **gpt-4.1-mini** (temperature=0, 50-round fixed horizon, standard payoff CC=3/CD=0/DC=5/DD=1) established:
+
+1. **LLM agents can identify and adapt to canonical strategies** — cooperative personas achieved perfect mutual cooperation against TFT, GRIM, GTFT, WSLS, and ALLC
+2. **Cooperative personas outperform selfish ones** — 27% higher aggregate payoff (132.4 vs. 104.3 per game)
+3. **Selfish exploitation is locally optimal but globally costly** — ruthless optimizer scored 250 against ALLC but only 50 against ALLD
+4. **The pdbench artifact produces reproducible results** consistent with game-theoretic predictions
 
 ## Target Venues
 

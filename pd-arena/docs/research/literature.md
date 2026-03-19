@@ -55,6 +55,26 @@
 | Poje (repeated games) | ✅ With hidden reasoning | Deception → higher payoffs when optimal |
 | **PD Arena (ours)** | ✅ Controlled variable | **First to test in standard IPD with LLMs** |
 
+### Additional Key Papers
+
+**Weng et al. (2025) — "Will Systems of LLM Agents Cooperate" (AAMAS)**
+- LLMs generate IPD strategies as natural language → Python. Evolutionary dynamics (Moran processes). Cooperative strategies generally outperform aggressive ones, but "Self-Refine" prompting enhances aggressive strategy effectiveness — a safety concern.
+
+**Huynh et al. (2025) — "Understanding LLM Agent Behaviours via Game Theory"**
+- LSTM-based strategy recognition (94% accuracy at identifying ALLC/ALLD/TFT/WSLS from trajectories). Payoff scaling across languages and personalities. Cross-linguistic effects significant.
+
+**Vallinder & Hughes (2025) — "Cultural Evolution of Cooperation among LLM Agents" (Google DeepMind)**
+- 10 generations of LLM agents in Donor Game. Claude societies evolve more cooperative; GPT-4o populations become increasingly untrusting.
+
+**Jia et al. (2025) — "LLM Strategic Reasoning" (NeurIPS)**
+- Behavioral game-theoretic evaluation via Truncated Quantal Response Equilibrium. GPT-o3-mini has greatest reasoning depth. Each model has distinct reasoning style.
+
+**Hao et al. (2026) — "Game-Theoretic Lens on LLM-based MAS"**
+- Comprehensive survey organizing LLM MAS research through game theory's four core elements (players, strategies, payoffs, information).
+
+**Zhu (2025) — "Game Theory Meets LLM: Cybersecurity"**
+- Theoretical monograph proposing "LLM-Nash games" and "reasoning-level equilibrium" — behavior emerging from prompt-based reasoning rather than analytical computation.
+
 ## Key Gaps We Address
 
 1. **No one tested communication as a controlled variable** in standard IPD with LLMs
@@ -63,3 +83,5 @@
 4. **No one mapped personas to classical strategies** using canonical baselines
 5. **No one published in IS venues** — all prior work is CS/AI/psychology
 6. **No one built a reproducible web-based benchmark** with UI for experiment design
+7. **No one systematically tested LLMs against the full canonical strategy set** (ALLC, ALLD, TFT, GRIM, GTFT, WSLS) — Fontana used only random opponents, Akata only 3 policy agents
+8. **No one modeled adversarial personas as an experimental variable** in LLM PD with canonical baselines — Phelps/Guo tested basic personas but without systematic strategy mapping

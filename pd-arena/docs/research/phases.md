@@ -4,7 +4,14 @@
 
 **Purpose:** Reproduce and extend Fontana et al. — validate the rig with real LLM calls.
 
-**Status:** All 12 criteria met. Ready for live experiments.
+**Status:** All 12 criteria met. **Preliminary results collected** with gpt-4.1-mini (3 personas × 6 policy agents, 50-round fixed horizon).
+
+### Preliminary Results
+
+- **Strategic cooperator** (avg 132.4/game) outperforms **ruthless optimizer** (avg 104.3) by 27%
+- Both cooperative personas achieved **perfect mutual cooperation** (rate=1.0, payoff=150) against TFT, GRIM, GTFT, WSLS, and ALLC
+- Against Always Defect, cooperative agents adapted quickly (cooperation dropped to 0.11)
+- Results are consistent with game-theoretic predictions and validate the experimental platform
 
 | Dimension | Values |
 |-----------|--------|
@@ -30,11 +37,11 @@
 
 ---
 
-## Phase 2: Capability Asymmetry ✅
+## Phase 2: Communication + Protocol Governance ✅ (built, experiments pending)
 
-**Purpose:** Test how agent architecture features affect cooperation dynamics. This is our **core novel contribution**.
+**Purpose:** Test how pre-decision communication and protocol safeguards affect cooperation — this is our **core novel contribution**.
 
-**Status:** All 9 criteria met. Chat, protocol, memory, and identity all implemented.
+**Status:** All 9 criteria met. Chat, protocol, memory, and identity implemented. **Experiments pending — next priority.**
 
 ### Variables
 

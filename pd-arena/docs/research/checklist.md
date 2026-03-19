@@ -2,7 +2,7 @@
 
 Current status of PD Arena against each phase's requirements.
 
-**Last updated:** 2026-02-27
+**Last updated:** 2026-03-19
 
 ## Phase 1: Baseline Social PD *(12/12 complete)* ✅
 
@@ -68,4 +68,6 @@ Current status of PD Arena against each phase's requirements.
 | Phase 2 | 269 | ✅ |
 | Phase 3 | 321 | ✅ |
 
-**Next step:** First live test with OpenAI API — set `use_mock=False` and run a small experiment.
+**Phase 1 baseline results collected** with gpt-4.1-mini (3 personas × 6 policy agents).
+
+**Next step:** Phase 2 experiments — run chat × protocol conditions with adversarial persona matchups.
