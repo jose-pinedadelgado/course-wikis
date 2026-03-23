@@ -62,6 +62,78 @@ END;
 /
 ```
 
+### Three Types of Facts
+
+Understanding fact types is critical — it determines how you can aggregate your data.
+
+#### ✅ Additive Facts
+
+Can be **summed across ALL dimensions**. These are the most common and most useful.
+
+| Example | Why Additive |
+|---------|-------------|
+| Revenue | $100 (Store A) + $200 (Store B) = $300 total ✅ |
+| Quantity Sold | 10 (Monday) + 20 (Tuesday) = 30 total ✅ |
+| Cost | Sum by product, by store, by time — all valid ✅ |
+
+#### ⚠️ Semi-Additive Facts
+
+Can be summed across **some dimensions, but NOT across time**. These are typically *snapshot* measurements — what something *is* at a moment, not what *happened*.
+
+| Example | Why Semi-Additive |
+|---------|------------------|
+| Account Balance | $5,000 Monday + $5,000 Tuesday ≠ $10,000! Use AVG or point-in-time. |
+| Inventory Level | 100 units today + 100 units yesterday ≠ 200 units. But SUM across warehouses works. |
+| Headcount | 50 employees in Dept A + 30 in Dept B = 80 total ✅. But NOT across months. |
+
+#### ❌ Non-Additive Facts
+
+Can **never be meaningfully summed** across any dimension. Must be computed from components.
+
+| Example | Why Non-Additive |
+|---------|-----------------|
+| Unit Price | Can't sum or average prices without weighting by quantity |
+| Profit Margin % | Ratios can't be summed |
+| Temperature | 70°F + 80°F = 150°F makes no sense |
+
+#### The Unit Price Trap
+
+This is the classic mistake students make:
+
+| | Qty | Unit Price | Revenue |
+|--|-----|-----------|---------|
+| Sale 1 | 1 | $1.00 | $1.00 |
+| Sale 2 | 4 | $0.50 | $2.00 |
+| **Total** | **5** | **???** | **$3.00** |
+
+- ❌ Simple average: ($1.00 + $0.50) / 2 = **$0.75** — WRONG
+- ✅ Weighted average: $3.00 / 5 = **$0.60** — CORRECT
+
+!!! warning "Kimball's Golden Rule"
+    **"Ratio of the sums, not sum of the ratios."**
+    
+    Store the **components** (revenue + quantity) as additive facts in the fact table, then **compute** the ratio in the query. Never store a pre-computed ratio as a fact if you can avoid it.
+
+```sql
+-- ❌ WRONG: Averaging a non-additive fact
+SELECT AVG(unit_price) FROM fact_sales;  -- Unweighted, misleading!
+
+-- ✅ RIGHT: Compute from additive components
+SELECT SUM(revenue) / SUM(quantity) AS weighted_avg_price 
+FROM fact_sales;
+```
+
+#### Applying This to Your Exercises
+
+When designing your star schemas, ask: **"Can I SUM this across every dimension?"**
+
+| Fact | Type | Why |
+|------|------|-----|
+| CourseGrade (Millennium) | ⚠️ Semi-additive | AVG across students, not SUM |
+| FaceValue (Fitchwood) | ✅ Additive | Total face value across agents, territories, time |
+| Commission % (Fitchwood) | ❌ Non-additive | Store dollar amounts instead |
+| InitComm % (Fitchwood) | ❌ Non-additive | Compute: FaceValue × InitComm% |
+
 ### Analytical Queries
 
 ```sql
