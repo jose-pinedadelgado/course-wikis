@@ -55,17 +55,13 @@ nav:
   - "Week 3: Logic & Conditionals":
     - Functions, Procedures & Conditionals: modules/functions-procedures.md
     - Activity: modules/activity-conditionals.md
-    - "Lab 1 Solutions: Conditionals & Loops": modules/lab1-solutions.md
   - "Week 4: SQL in PL/SQL":
     - SQL in PL/SQL: modules/sql-in-plsql.md
     - Exercises: modules/sql-in-plsql-exercises.md
-    - "Lab 2 Solutions: FOR Loops & SQL": modules/lab2-solutions.md
   - "Week 5: Cursors":
     - PL/SQL Cursors: modules/cursors.md
     - Cursor Exercises: modules/cursor-exercises.md
-    - "Lab 3 Solutions: SQL in PL/SQL & Cursors": modules/lab3-solutions.md
-  - "Week 6-7: Exceptions & Packages":
-    - "Lab 4 Solutions: Packages & Exceptions": modules/lab4-solutions.md
+  - "Week 6-7: Exceptions & Packages": []
   - "Week 8-9: Midterm & Project Kickoff":
     - "📝 Midterm Study Guide": study-guide.md
   - "Week 10-12: Data Warehousing":
