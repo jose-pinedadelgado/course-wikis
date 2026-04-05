@@ -16,18 +16,15 @@ This wiki covers the hands-on content for IS480 at California State University, 
 | 8–9 | [Midterm](study-guide.md) & Project Kickoff | ✅ Complete |
 | 10 | [Star Schema Design](modules/week10-star-schema-lecture.md) / [Exercise](modules/week10-exercise.md) | ✅ Complete |
 | — | **Spring Break (Mar 30 – Apr 5)** | — |
-| 11 | [ETL with PL/SQL + Analytical SQL](modules/week11-etl-analytical-sql.md) | 🔜 This Week |
-| 12 | [Spark & Databricks Crash Course](modules/week12-spark-databricks.md) | 📅 Apr 13 |
-| 13 | [Scale & Presentations](modules/week13-scale-presentations.md) | 📅 Apr 20 |
+| 11 | ETL with PL/SQL + Analytical SQL | 🔜 Coming Soon |
+| 12 | Spark & Databricks Crash Course | 📅 Apr 13 |
+| 13 | Scale & Presentations | 📅 Apr 20 |
 | 14–15 | Project Presentations & Finals Prep | 📅 Apr 27+ |
 
 ### Reference Materials
 
 - [📋 Kimball Cheat Sheet](modules/kimball-cheat-sheet.md) — Star schema design reference
-- [📋 Analytical SQL Reference](modules/analytical-sql-reference.md) — ROLLUP, CUBE, RANK, window functions
-- [📋 PySpark Cheat Sheet](modules/pyspark-cheat-sheet.md) — Spark DataFrame & SQL reference
-- [📋 Oracle CSV Export Guide](modules/oracle-csv-export.md) — Getting data out for Phase 3
-- [📋 ETL Book Reference](https://github.com) — Palmer (2025) *Understanding ETL* mapping to IS480
+- *More references will be published as we progress*
 
 ### Semester Project
 

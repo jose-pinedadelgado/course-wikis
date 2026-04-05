@@ -65,19 +65,13 @@ nav:
     - "📝 Midterm Study Guide (Weeks 1-7 Review)": study-guide.md
   - "Week 8-9: Midterm & Project Kickoff":
     - "📝 Midterm Study Guide": study-guide.md
-  - "Week 10-12: Data Warehousing":
+  - "Week 10: Data Warehousing":
     - "Star Schema & ETL": modules/data-warehousing.md
     - "Week 10 Lecture: Star Schema Design": modules/week10-star-schema-lecture.md
     - "Week 10 Exercise": modules/week10-exercise.md
-    - "Week 11: ETL with PL/SQL + Analytical SQL": modules/week11-etl-analytical-sql.md
     - "📋 Kimball Cheat Sheet": modules/kimball-cheat-sheet.md
-    - "📋 Analytical SQL Reference": modules/analytical-sql-reference.md
-  - "Week 12-13: Spark & Big Data":
-    - "Apache Spark & Hive": modules/spark-hive.md
-    - "Week 12: Spark & Databricks Crash Course": modules/week12-spark-databricks.md
-    - "Week 13: Scale & Presentations": modules/week13-scale-presentations.md
-    - "📋 PySpark Cheat Sheet": modules/pyspark-cheat-sheet.md
-    - "📋 Oracle CSV Export Guide": modules/oracle-csv-export.md
+  - "Week 11-13: Coming Soon":
+    - "Apache Spark & Hive (Preview)": modules/spark-hive.md
   - "Semester Project":
     - Project Specification: modules/project-spec.md
     - "Sample: BambooBudget": modules/project-sample.md
