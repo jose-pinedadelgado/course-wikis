@@ -11,6 +11,7 @@ Each folder is a self-contained MkDocs wiki. GitHub Actions builds all wikis and
 | Folder | Type | Description |
 |--------|------|-------------|
 | `database-management/` | Course | IS 380 — Database Management |
+| `is380-exam-prep/` | Study Guide | IS 380 exam preparation for SQL, NoSQL, DynamoDB, Neo4j, and physical design |
 | `advanced-database-management-zensical/` | Course | Advanced DB — Zensical edition |
 | `management-information-systems/` | Course | MIS fundamentals |
 | `pd-arena/` | Project | Prisoner's Dilemma agent research |

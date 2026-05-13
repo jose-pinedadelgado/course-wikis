@@ -65,6 +65,11 @@ jobs:
                   <h2>Database Management</h2>
                   <p>IS 380 — ERD modeling, SQL, relational design</p>
                 </a>
+                <a class="card" href="./is380-exam-prep/">
+                  <span class="badge">Study Guide</span>
+                  <h2>IS380 Exam Prep</h2>
+                  <p>SQL, NoSQL, DynamoDB, Neo4j, and physical design review materials</p>
+                </a>
                 <a class="card" href="./advanced-database-management-zensical/">
                   <span class="badge">Course</span>
                   <h2>Advanced Database Management (Zensical)</h2>
@@ -108,6 +113,13 @@ jobs:
           uv sync
           uv run zensical build
           mv site ../site/database-management
+
+      - name: Build is380-exam-prep
+        run: |
+          cd is380-exam-prep
+          uv sync
+          uv run zensical build
+          mv site ../site/is380-exam-prep
 
       - name: Build advanced-database-management-zensical
         run: |
